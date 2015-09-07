@@ -1,0 +1,104 @@
+Labb 1
+Grupp 9
+Simon Sundström och Felix Jansson
+
+A.1. cd
+
+A.3. ls -l
+Den första är directory(visar om det är map eller fil)
+Den andra är läsrättighet för användaren (user)
+Den tredje är skrivrättighet för användaren
+Den fjärde är körrättighet för användaren
+Kommande tre är läs-, skriv- och körrättighet för gruppen (group)
+Resterande tre är läs-, skriv- och körrättighet för andra (others)
+
+A.4. Tar bort läs-, skriv- och körrättigheterna för alla utom mig själv
+
+A.5. -rw-r----- vilket betyder att jag har rättighet att läsa och skirva
+gruppen får läsa men kommer inte åt filen.
+
+B.8.
+
+a)
+
+Felmeddelande:
+#################
+HelloWorld.java:1:error: '{'  expected
+public class HelloWorld
+                        ^
+1 error
+#################
+
+Felmeddelandet berättar för oss vad den hittar för fel i syntaxen
+och visar även var den tror att felet är. I det här fallet gav den oss ett
+förslag på hur vi ska lösa felet. Här är det en { som saknas direkt efter
+public class HelloWorld
+
+b)
+
+Felmeddelande:
+#################
+HelloWorld.java:4: error: reached end of file while parsing
+ }
+  ^
+1 error
+#################
+
+Felmeddelandet betyder att programmet körs från parantes till parantes
+men efterson det inte finns någon slutparantes kan inte programmet köras
+klart. Felmeddelandet är tydligt i syntax men ger ingen info om vart i
+koden felet kan vara. Då det bara är antalet som spelar roll och inte
+placering.
+
+c)
+
+Felmeddelande:
+#################
+
+#################
+
+Får inget felmeddelande om vi tar bort public från klass.
+
+Felmeddelande:
+#################
+Error: Main method not found in class HelloWorld, please define the main
+method as:
+  public static void main(String[] args)
+1 error
+#################
+
+Det betyder att när metoden inte är public kommer vi ej åt att köra metoden
+från klassen. Meddelandet säger att det inte finns en main metod men kan
+inte specifiera varför den inte finner metoden. Den berättar istället
+syntaxen för en main metod.
+
+d)
+
+Felmeddelande:
+#################
+Error: Main method is not static in class HelloWorld, please define the
+main method as:
+  public static void main(String[] args)
+1 error
+#################
+
+Det betyder att main metoden inte är statisk. Den berättar exakt hur vi ska
+lösa problemet.
+
+e)
+
+Felmeddelande:
+#################
+HelloWorld.java:2: error: <identifier> expected
+  public static void main(String[] args){
+                ^
+HelloWorldd.java:2: error: invalid method declaration; return type required
+  public static void main(String[] args){
+                     ^
+2 errors
+#################
+
+Vi förstod ej vad som var fel men vart det var fel genom felmeddelandena.
+Då vi följer instruktionerna i felmeddelandet blir det fortfarande fel.
+I det här fallet klarar inte compilatorn av att läsa det användaren har
+försökt göra då det finns många varianter av vad användaren var ute efter.
