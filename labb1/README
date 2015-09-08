@@ -98,7 +98,7 @@ HelloWorldd.java:2: error: invalid method declaration; return type required
 2 errors
 #################
 
-Vi förstod ej vad som var fel men vart det var fel genom felmeddelandena.
+Vi förstod ej vad som var fel men förstod vart det var fel genom felmeddelandena.
 Då vi följer instruktionerna i felmeddelandet blir det fortfarande fel.
 I det här fallet klarar inte compilatorn av att läsa det användaren har
 försökt göra då det finns många varianter av vad användaren var ute efter.
