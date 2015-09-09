@@ -1,27 +1,34 @@
-package com.company;
-
 public class Rse {
     public static boolean allRowSumsEqual(int[][] m){
-        int[] summa = new int[m.length]; //Jämförelsetal fårn summan, ska vara lika måna som arrays
-        boolean t = false;
-        //Loop för att räkna hur många summor arrayen m innehåller
-        for (int i = 0; i < m.length; i++) {
+        if (m != null) {
 
-            summa[i] = rowSum(m[i]);
-        }
-        //Loop för att jämföra alla arrays
-        for(int k = 0; k < summa.length - 1; k++){
-             t = summa[k] == summa[k + 1];
-        }
+            int summa = rowSum(m[0]); //Jamforelsetal fran summan, ska vara lika manga som arrays
+                    
+            boolean t = true;
+            
+            //Loop for att rakna och jamnfora summor i arrayen m
+            for (int i = 1; i < m.length; i++) {
+
+                int tempSum = rowSum(m[i]);
+
+                t = tempSum == summa;
+            }
             return t;
-
+        }
+        else {
+            return false;
+        }
     }
     public static int rowSum(int[] v){
         int sum = 0;
-        //Loop för att räkna summan för m[i]
-            for(int j = 0; j <= v.length - 1; j++) {
-                sum += v[j];
-            }
-        return sum;
+        if (v != null) {
+            //Loop for att rakna summan for m[i]
+                for(int j = 0; j <= v.length - 1; j++) {
+                    sum += v[j];
+                }
+            return sum;
+        } else {
+            return 0; 
+        }
     }
 }

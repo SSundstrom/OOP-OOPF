@@ -1,5 +1,3 @@
-package com.company;
-
 public class Main {
 
     public static void main(String[] args) {
@@ -11,8 +9,11 @@ public class Main {
                 {1,2,3,4},
                 {5,6,7,8},
                 {1,1,1,1}};
+        int[][] c = null;
+        int[][] d = {{},null};
+
         Rse rse = new Rse();
-        System.out.print(rse.allRowSumsEqual(a));
+        System.out.println(rse.allRowSumsEqual(d));
     }
 
 }
