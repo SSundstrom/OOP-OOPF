@@ -10,10 +10,10 @@ public class Main {
                 {5,6,7,8},
                 {1,1,1,1}};
         int[][] c = null;
-        int[][] d = {{},null};
+        int[][] d = {{0},null};
 
         Rse rse = new Rse();
-        System.out.println(rse.allRowSumsEqual(d));
+        System.out.println(rse.allRowSumsEqual(c));
     }
 
 }

@@ -16,7 +16,7 @@ public class Rse {
             return t;
         }
         else {
-            return false;
+            return true;
         }
     }
     public static int rowSum(int[] v){
