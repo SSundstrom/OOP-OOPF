@@ -1,17 +1,17 @@
 public class Rse {
     public static boolean allRowSumsEqual(int[][] m){
-        if (m != null && m.length > 0) {
+        boolean t = true;
+        if (m != null && m.length > 0 && t) {
 
             int summa = rowSum(m[0]); //Jamforelsetal fran summan, ska vara lika manga som arrays
                     
-            boolean t = true;
-            
             //Loop for att rakna och jamnfora summor i arrayen m
             for (int i = 1; i < m.length; i++) {
 
                 int tempSum = rowSum(m[i]);
 
                 t = tempSum == summa;
+                System.out.println(t);
             }
             return t;
         }
