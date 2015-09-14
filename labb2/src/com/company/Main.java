@@ -12,8 +12,9 @@ public class Main {
         int[][] c = null;
         int[][] d = {{0},null};
 
-        Rse rse = new Rse();
-        System.out.println(rse.allRowSumsEqual(c));
-    }
 
+        Rse rse = new Rse();
+        System.out.println(rse.allRowSumsEqual(a));
+        
+        }
 }

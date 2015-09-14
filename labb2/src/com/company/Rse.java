@@ -1,6 +1,6 @@
 public class Rse {
     public static boolean allRowSumsEqual(int[][] m){
-        if (m != null) {
+        if (m != null && m.length > 0) {
 
             int summa = rowSum(m[0]); //Jamforelsetal fran summan, ska vara lika manga som arrays
                     
@@ -23,7 +23,7 @@ public class Rse {
         int sum = 0;
         if (v != null) {
             //Loop for att rakna summan for m[i]
-                for(int j = 0; j <= v.length - 1; j++) {
+                for(int j = 0; j < v.length; j++) {
                     sum += v[j];
                 }
             return sum;
