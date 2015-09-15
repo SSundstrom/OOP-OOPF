@@ -8,28 +8,22 @@ public class RatNum {
 		if (m == 0 && n == 0) {
 			throw new IllegalArgumentException();
 		}
+		if (m == 0 || n == 0) {
+			return m + n;
+		}
 		if (m < 0) {
 			m = m * -1;
 		}
 		if (n < 0) {
 			n = n * -1;
 		}
-
-		int smallestInput = m;
-		int biggestInput = n;
-		if (m > n) {
-			smallestInput = n;
-			biggestInput = m;
+		
+		int r = m%n;
+		while ( r != 0 ) {
+			m = n;
+			n = r;
+			r = m%n;
 		}
-		if (smallestInput == 0) {
-			return biggestInput;
-		}
-
-		for (int i = smallestInput; i > 0 ; i--) {
-			if (m%i == 0 && n%i == 0) {
-				return i;
-			}
-		}
-		return 1;
+		return n;
 	}
 }
