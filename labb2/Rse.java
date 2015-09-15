@@ -2,7 +2,7 @@ public class Rse {
     public static boolean allRowSumsEqual(int[][] m){
         if (m != null && m.length > 0) {
 
-            int summa = rowSum(m[0]); //Jamforelsetal fran summan, ska vara lika manga som arrays
+            int summa = rowSum(m[0]);
             
             for (int i = 1; i < m.length; i++) {
                 int tempSum = rowSum(m[i]);
