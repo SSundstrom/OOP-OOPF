@@ -4,7 +4,7 @@ public class Euklides{
 		System.out.println(gcd(5, 5));
 	}
 	public static int gcd(int m, int n){
-		
+
 		if(m == 0 && n == 0){
 			throw new IllegalArgumentException();
 		}
@@ -26,13 +26,12 @@ public class Euklides{
 		}
 		int rest = biggestInput % smalestInput;
 		while( rest != 0){
+			biggestInput = smalestInput;
+			smalestInput = rest;
 			rest = biggestInput%smalestInput;
 			if(rest == 0){
 				return smalestInput;
-			} else{
-				biggestInput = smalestInput;
-				smalestInput = rest;
-			}
+			}			
 		}
 		return smalestInput;
 
