@@ -1,5 +1,7 @@
 public class TestRse {
 
+    private static int amountFails = 0;
+
     public static void main(String[] args) {
         
         int[][] a = {
@@ -24,9 +26,18 @@ public class TestRse {
 
         Rse rse = new Rse();
 
+        test("a", rse.allRowSumsEqual(a));
+        test("b", rse.allRowSumsEqual(b) == false);
+        test("c", rse.allRowSumsEqual(c));
+        test("d", rse.allRowSumsEqual(d));
+        test("e", rse.allRowSumsEqual(e) == false);
+        test("f", rse.allRowSumsEqual(f));
+        test("g", rse.allRowSumsEqual(g));
+        test("h", rse.allRowSumsEqual(h) == false);
+        
+        
 
-        String right = " returns the correct boolean!";
-        String wrong = " returns the wrong boolean!";
+        /*
         if (rse.allRowSumsEqual(a)) {
             System.out.println("a" + right);
         } else { System.out.println("a" + wrong);
@@ -51,6 +62,22 @@ public class TestRse {
         } if (rse.allRowSumsEqual(h)) {
             System.out.println("h" + wrong);
         } else { System.out.println("h" + right);
-        }    
+        } 
+        */   
+        if (amountFails > 0) {
+            System.out.println("You have " + amountFails + " failed Matrix");
+        } else {
+            System.out.println("All matrix correct");
+        }
+    }
+    private static void test(String name, boolean correct) {
+        
+        String right = " returns the correct boolean!";
+        String wrong = " returns the wrong boolean!";
+        if (correct) {
+            System.out.println("Matris " + name + right);
+        } else {
+            amountFails++;
+        }
     }
 }
