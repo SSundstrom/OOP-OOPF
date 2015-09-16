@@ -64,8 +64,13 @@ class RatNumTest2 {
 
 	public static void main(String[] arg) {
 		divTester();
+		RatNum h;
+		h = new RatNum(32, -12);
+		System.out.println(h.toString());
+		System.out.println(h.toDouble());
 		System.out.println("Inga fel!"); 
 	}
+	
 }
 
 

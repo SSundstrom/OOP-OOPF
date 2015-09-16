@@ -65,5 +65,12 @@ public class RatNum {
 	public int getDenominator() {
 		return this.denominator;
 	}
-	public String toString()
+	
+	public String toString() {
+		return this.numerator + "/" + this.denominator; 
+	}
+
+	public double toDouble() {
+		return (double)this.numerator/this.denominator;
+	}
 }
