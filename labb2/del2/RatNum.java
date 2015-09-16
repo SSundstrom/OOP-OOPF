@@ -1,8 +1,5 @@
 public class RatNum {
-	public static void main(String[] args) {
 
-		System.out.println(gcd(100, 95));
-	}
 	public static int gcd(int m, int n) {
 		
 		if (m == 0 && n == 0) {
@@ -25,4 +22,48 @@ public class RatNum {
 		}
 		return n;
 	}
+
+	private int numerator;
+	private	int denominator;
+	
+	public RatNum() {
+		this.numerator = 0;
+		this.denominator = 1;
+	}
+
+	public RatNum(int a) {
+		this.numerator = a;
+		this.denominator = 1;
+	}
+
+	public RatNum(int a, int b) {
+		if (b == 0) {
+			throw new NumberFormatException("Denominator = 0");
+		}
+		int divider = gcd(a,b);
+		if (divider > 1) {
+			a = a / divider;
+			b = b / divider;
+		}
+		if ( a < 0 && b < 0 || b < 0) {
+			a *= -1;
+			b *= -1;
+		}
+		this.numerator = a;
+		this.denominator = b;
+	}
+
+	public RatNum(RatNum r) {
+		this.numerator = r.numerator;
+		this.denominator = r.denominator;
+	}
+
+	public int getNumerator() {
+		return this.numerator;
+	}
+
+	public int getDenominator() {
+		return this.denominator;
+	}
+	public String toString()
 }
