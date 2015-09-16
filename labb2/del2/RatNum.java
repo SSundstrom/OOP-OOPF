@@ -8,16 +8,15 @@ public class RatNum {
 		if (m == 0 && n == 0) {
 			throw new IllegalArgumentException();
 		}
-		if (m == 0 || n == 0) {
-			return m + n;
-		}
 		if (m < 0) {
 			m = m * -1;
 		}
 		if (n < 0) {
 			n = n * -1;
+		}		
+		if (m == 0 || n == 0) {
+			return m + n;
 		}
-		
 		int r = m%n;
 		while ( r != 0 ) {
 			m = n;
