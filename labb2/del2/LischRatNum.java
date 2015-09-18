@@ -3,10 +3,38 @@ public class RatNumLocal {
 	private int denominator;
 
 
-	public static double parse(String s){
-		int dblNum =0, dblDem =0;
-		double answer;
-		try {			
+	public static RatNumLocal parse(String s){
+		int num =0, dem =0;
+		RatNumLocal answer = new RatNumLocal;
+		String[] tmp;
+		if(s.contains("/")){
+			try{
+				tmp = s.split("/");
+				num = Integer.parseInt(tmp[0]);
+				dem = Integer.parseInt(tmp[1]);
+				return RatNumLocal(num, dem);
+			}catch (NumberFormatException e){
+				return -1.0;
+			}else{
+				try{
+					num = Integer.parseInt(s);
+					dem = 1;
+				}
+			}
+		}
+		/*else if(tmp.length < 1){
+			try{
+				dblNum = Integer.parseInt(s);
+				answer = dblNum * 1.0;
+			}catch (NumberFormatException f){
+				return -1.0;
+			}	
+		} */
+		return answer;
+
+
+
+		/*try {			
 			String[] tmp = s.split("/");
 			System.out.print(tmp[0]);
 			if(1 < tmp.length){
@@ -18,7 +46,7 @@ public class RatNumLocal {
 		} catch (NumberFormatException e){
 			return -1.0;
 		}
-			
+			*/
 
 	}
 	public double toDouble(){
