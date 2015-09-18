@@ -2,46 +2,59 @@ public class RatNum {
 	private int numerator;
 	private int denominator;
 
-	public boolean equals(RatNum r) {
-		
-		int restR = gcd(r.numerator, r.denominator);
-		int restThis = gcd(this.numerator, this.denominator);
+	public RatNum div(RatNum r){
+		int num = this.numerator * r.denominator;
+		int dem = this.denominator * r.numerator;
+		RatNum rn = new RatNum(num ,dem);
+		return rn;
+	}
 
-		if (r.denominator/restR == this.denominator/restThis 
-			&& r.numerator/restR == this.numerator/restThis) {
-			
+	public RatNum mul(RatNum r){
+		int num = this.numerator * r.numerator;
+		int dem = this.denominator * r.denominator;
+		RatNum rn = new RatNum(num, dem);
+		return rn;
+	}
+
+	public RatNum sub(RatNum r){
+		int dem = this.denominator * r.denominator;
+		int num = (this.numerator * r.denominator) - 
+		(r.numerator * this.denominator);
+		RatNum rn = new RatNum(num , dem);
+		return rn;
+	}
+
+	public boolean equals(Object r) {
+		if (r == this) {
 			return true;
 		}
+		if (r instanceof RatNum) {
+			RatNum rRat = (RatNum) r;
+			int restR = gcd(rRat.numerator, rRat.denominator);
+			int restThis = gcd(this.numerator, this.denominator);
+
+			if (rRat.denominator/restR == this.denominator/restThis 
+				&& rRat.numerator/restR == this.numerator/restThis) {
+			
+				return true;
+			}
+		}
+
 		return false;
-	}
-/*
-	public int[] minForm(RatNum r) {
-		int[] mini = new int[2];
-		int rest = gcd(r.numerator, r.denominator);
-		minForm[0] = r.numerator/rest;
-		minForm[1] = r.denominator/rest;
-		return minForm;
-	}
-*/
-	public boolean lessThan(RatNum r) {
-		
- 
+	} 
+
+	public boolean lessThan(RatNum r) { 
 		if ( r.numerator * this.denominator
-			< this.numerator * r.denominator ) { 
+			> this.numerator * r.denominator ) { 
 			return true;
 		}
 		return false;
 	}
 
 	public RatNum add (RatNum r) {
-		
 		int dem = this.denominator * r.denominator;
 		int num = (this.numerator * r.denominator) 
 					+ (r.numerator * this.denominator);
-		
-		System.out.println("dem number = " + dem);
-		System.out.println("num number = " + num);
-
 		RatNum rn = new RatNum(num, dem);
 
 		return rn;
@@ -50,39 +63,37 @@ public class RatNum {
 	
 
 
-	public static int[] parse(String s){
-		int num =0, dem =0;
-		int[] answer = new int[2];
+	public static RatNum parse(String s){
+		int num =0, dem =1;
 		String[] tmp;
+		RatNum rn = new RatNum();
 		if(s.contains("/")){
 			try {
 				tmp = s.split("/");
-				num = Integer.parseInt(tmp[0]);
-				dem = Integer.parseInt(tmp[1]);
-				answer[0] = num;
-				answer[1] = dem;
+				rn.numerator = Integer.parseInt(tmp[0]);
+				rn.denominator = Integer.parseInt(tmp[1]);
+
 			} catch (NumberFormatException e){
-				System.out.print("Nu blev det fel pga inget '/'");
+				System.out.print("Missing '/'");
 			}
 		} else {
 			try {
-				num = Integer.parseInt(s);
-				answer[0] = num;
-				answer[1] = 1;
-			} catch (NumberFormatException f){
-				System.out.print("Nu blev det fel pga inget 'heltal'");
+				rn.denominator = 1;
+				rn.numerator = Integer.parseInt(s);
+			} 
+			catch (NumberFormatException f){
+				System.out.print("Wrong input. Only rational numbers allowed");
 			}
 		}
-		return answer;
+		return rn;
 	}
 	public RatNum(String s){
-		int[] svar = parse(s);
-		this.numerator = svar[0];
-		this.denominator = svar[1];
+		this(parse(s));
+		
 	}
 
 	public double toDouble(){
-		return (double)this.numerator / (double)this.denominator;
+		return (double)this.numerator / this.denominator;
 	}
 	public String toString(){
 		return this.numerator + "/" + this.denominator;
