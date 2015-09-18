@@ -1,54 +1,41 @@
-public class RatNumLocal {
+public class LischRatNum {
 	private int numerator;
 	private int denominator;
 
 
-	public static RatNumLocal parse(String s){
+	public static int[] parse(String s){
 		int num =0, dem =0;
-		RatNumLocal answer = new RatNumLocal;
+		int[] answer = new int[2];
 		String[] tmp;
 		if(s.contains("/")){
-			try{
+			try {
 				tmp = s.split("/");
 				num = Integer.parseInt(tmp[0]);
 				dem = Integer.parseInt(tmp[1]);
-				return RatNumLocal(num, dem);
-			}catch (NumberFormatException e){
-				return -1.0;
-			}else{
-				try{
-					num = Integer.parseInt(s);
-					dem = 1;
-				}
+				answer[0] = num;
+				answer[1] = dem;
+			} catch (NumberFormatException e){
+				System.out.print("Nu blev det fel pga inget '/'");
+			}
+		} else {
+			try {
+				num = Integer.parseInt(s);
+				answer[0] = num;
+				answer[1] = 1;
+			} catch (NumberFormatException f){
+				System.out.print("Nu blev det fel pga inget 'heltal'");
 			}
 		}
-		/*else if(tmp.length < 1){
-			try{
-				dblNum = Integer.parseInt(s);
-				answer = dblNum * 1.0;
-			}catch (NumberFormatException f){
-				return -1.0;
-			}	
-		} */
 		return answer;
-
-
-
-		/*try {			
-			String[] tmp = s.split("/");
-			System.out.print(tmp[0]);
-			if(1 < tmp.length){
-				dblNum = Integer.parseInt(tmp[0]);
-				dblDem =  Integer.parseInt(tmp[1]);
-			}
-			answer = (double)dblNum / (double)dblDem;
-			return answer;
-		} catch (NumberFormatException e){
-			return -1.0;
-		}
-			*/
-
 	}
+	public LischRatNum(String s){
+		int[] svar = parse(s);
+		this.numerator = svar[0];
+		this.denominator = svar[1];
+		System.out.println(this.numerator);
+		System.out.println(this.denominator);
+	}
+
 	public double toDouble(){
 		return this.numerator / this.denominator;
 	}
@@ -56,15 +43,15 @@ public class RatNumLocal {
 		return (double)this.numerator + "/" + (double)this.denominator;
 	}
 	//Del 2
-	public RatNumLocal(){
+	public LischRatNum(){
 		 this.numerator = 0;
 		 this.denominator = 1;
 	}
-	public RatNumLocal(int a){
+	public LischRatNum(int a){
 		this.denominator = 1;
 		this.numerator = a;
 	}
-	public RatNumLocal(int a, int b){
+	public LischRatNum(int a, int b){
 		if(b == 0){
 			throw new NumberFormatException("Denominator = 0");
 		}	
@@ -80,7 +67,7 @@ public class RatNumLocal {
 		this.numerator = a;
 		this.denominator = b;
 	}
-	public RatNumLocal(RatNumLocal r){
+	public LischRatNum(LischRatNum r){
 		this.numerator = r.numerator;
 		this.denominator = r.denominator;
 	}
