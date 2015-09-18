@@ -73,4 +73,16 @@ public class RatNum {
 	public double toDouble() {
 		return (double)this.numerator/this.denominator;
 	}
+	public RatNum parse(String s) {
+		String[] part = {};
+		if (s.contains("/")) {
+			part = s.split("/");
+		}
+		int numerator = Integer.parseInt(part[0]); 
+		int denominator = Integer.parseInt(part[1]);
+		RatNum(numerator, denominator);
+	}
+	public RatNum(String s) {
+		parse(s);
+	}
 }
