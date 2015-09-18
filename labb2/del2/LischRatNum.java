@@ -2,6 +2,61 @@ public class LischRatNum {
 	private int numerator;
 	private int denominator;
 
+	public LischRatNum div(LischRatNum r){
+		int num = this.numerator * r.denominator;
+		int dem = this.denominator * r.numerator;
+		LischRatNum rn = new LischRatNum(num ,dem);
+		return rn;
+	}
+
+	public LischRatNum mul(LischRatNum r){
+		int num = this.numerator * r.numerator;
+		int dem = this.denominator * r.denominator;
+		LischRatNum rn = new LischRatNum(num, dem);
+		return rn;
+	}
+
+	public LischRatNum sub(LischRatNum r){	//TODO negativ
+		int dem = this.denominator * r.denominator;
+		int num = (this.numerator * r.denominator) - 
+		(r.numerator * this.denominator);
+		LischRatNum rn = new LischRatNum(num , dem);
+		return rn;
+	}
+
+	public boolean equals(LischRatNum r) {
+		
+		int restR = gcd(r.numerator, r.denominator);
+		int restThis = gcd(this.numerator, this.denominator);
+
+		if (r.denominator/restR == this.denominator/restThis 
+			&& r.numerator/restR == this.numerator/restThis) {
+			
+			return true;
+		}
+		return false;
+	}
+
+	public boolean lessThan(LischRatNum r) { 
+		if ( r.numerator * this.denominator
+			< this.numerator * r.denominator ) { 
+			return true;
+		}
+		return false;
+	}
+
+	public LischRatNum add (LischRatNum r) {
+		
+		int dem = this.denominator * r.denominator;
+		int num = (this.numerator * r.denominator) 
+					+ (r.numerator * this.denominator);
+		LischRatNum rn = new LischRatNum(num, dem);
+
+		return rn;
+	}
+
+	
+
 
 	public static int[] parse(String s){
 		int num =0, dem =0;
@@ -30,16 +85,15 @@ public class LischRatNum {
 	}
 	public LischRatNum(String s){
 		int[] svar = parse(s);
-		LischRatNum(svar[0], svar[1]);
-		System.out.println(this.numerator);
-		System.out.println(this.denominator);
+		this.numerator = svar[0];
+		this.denominator = svar[1];
 	}
 
 	public double toDouble(){
-		return this.numerator / this.denominator;
+		return (double)this.numerator / (double)this.denominator;
 	}
 	public String toString(){
-		return (double)this.numerator + "/" + (double)this.denominator;
+		return this.numerator + "/" + this.denominator;
 	}
 	//Del 2
 	public LischRatNum(){
