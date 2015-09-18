@@ -30,8 +30,7 @@ public class LischRatNum {
 	}
 	public LischRatNum(String s){
 		int[] svar = parse(s);
-		this.numerator = svar[0];
-		this.denominator = svar[1];
+		LischRatNum(svar[0], svar[1]);
 		System.out.println(this.numerator);
 		System.out.println(this.denominator);
 	}
