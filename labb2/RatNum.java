@@ -35,7 +35,8 @@ public class RatNum {
 
 			if (rRat.denominator/restR == this.denominator/restThis 
 				&& rRat.numerator/restR == this.numerator/restThis) {
-			
+			// if (rRat.denominator == this.denominator && rRat.numerator == this.numerator) {
+
 				return true;
 			}
 		}
@@ -72,16 +73,16 @@ public class RatNum {
 				tmp = s.split("/");
 				rn.numerator = Integer.parseInt(tmp[0]);
 				rn.denominator = Integer.parseInt(tmp[1]);
-
-			} catch (NumberFormatException e){
+			} catch (NumberFormatException f){
 				System.out.print("Missing '/'");
 			}
 		} else {
+
 			try {
 				rn.denominator = 1;
 				rn.numerator = Integer.parseInt(s);
 			} 
-			catch (NumberFormatException f){
+			catch (NumberFormatException e){
 				System.out.print("Wrong input. Only rational numbers allowed");
 			}
 		}
