@@ -1,6 +1,11 @@
 public class CounterModel {
 
     private int value = 0;
+    private static int nbrOfCounters;
+
+    public CounterModel() {
+        nbrOfCounters++;
+    }
 
     public void increment () {
         value++;
@@ -13,6 +18,9 @@ public class CounterModel {
     }
     public int getValue() {
         return value;
+    }
+    public static int getNbrOfCounters() {
+        return nbrOfCounters;
     }
 
 

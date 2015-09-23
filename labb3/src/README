@@ -1,0 +1,12 @@
+Labb 3
+Grupp 9
+Simon Sundström & Felix Jansson
+
+Del (b)
+* Förklara varför varje rad av utskriften ser ut som den gör, rita gärna.
+    Vi deklarerar variabeln k som 5 från början och sen ändrar vi aldrig på den.
+    När vi tillkallar changeValue så ändrar den på värdet i instancen, inte värdet som vi först deklarerar.
+
+
+
+Del (c)

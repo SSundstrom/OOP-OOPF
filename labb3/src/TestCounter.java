@@ -4,6 +4,7 @@ public class TestCounter {
      CounterModel counterA = new CounterModel();
      CounterModel counterB = new CounterModel();
      CounterModel counterC = new CounterModel();
+     System.out.println(CounterModel.getNbrOfCounters());
      CounterModel counterD = new CounterModel();
      CounterModel counterE = new CounterModel();
      CounterModel counterF = new CounterModel();
@@ -21,7 +22,7 @@ public class TestCounter {
      for (int i = 0; i < 5; i++) {
          counterC.decrement();
      }
-     System.out.println("Counter C (after increments) = " + counterC.getValue());
+     System.out.println("Counter C (after decrements) = " + counterC.getValue());
      counterC.reset();
 
      //     Changes in counterD
@@ -41,12 +42,24 @@ public class TestCounter {
      while (counterF.getValue() > 0)
          counterF.reset();
 
-
      System.out.println("Counter A = " + counterA.getValue());
      System.out.println("Counter B = " + counterB.getValue());
      System.out.println("Counter C = " + counterC.getValue());
      System.out.println("Counter D = " + counterD.getValue());
      System.out.println("Counter E = " + counterE.getValue());
      System.out.println("Counter F = " + counterF.getValue());
+
+     if (test(counterA, 6)
+             && test(counterB, -10)
+             && test(counterC, 0) && test(counterD, 10) && test(counterE, 20) && test(counterF, 0)) {
+         System.out.println("All test cleared");
+     } else {
+         System.out.println("FAILED! somewhere");
+     }
+     System.out.println(CounterModel.getNbrOfCounters());
+
  }
+    public static boolean test(CounterModel counter, int ans) {
+       return ans == counter.getValue();
+    }
 }

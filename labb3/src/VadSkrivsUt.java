@@ -7,12 +7,11 @@ public class VadSkrivsUt {
     }
     public static void main(String[] args) {
         int k=5;
-                CounterModel a = new CounterModel();
-                CounterModel b = new CounterModel();
-                changeValues(k,a,b);
-                System.out.println("k="+k);
-                System.out.println("a="+a.getValue());
-                System.out.println("b="+b.getValue());
-
+        CounterModel a = new CounterModel();
+        CounterModel b = new CounterModel();
+        changeValues(k,a,b);
+        System.out.println("k="+k);
+        System.out.println("a="+a.getValue());
+        System.out.println("b="+b.getValue());
     } // end main
 } // end VadSkrivsU
