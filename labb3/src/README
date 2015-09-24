@@ -3,10 +3,43 @@ Grupp 9
 Simon Sundström & Felix Jansson
 
 Del (b)
-* Förklara varför varje rad av utskriften ser ut som den gör, rita gärna.
-    Vi deklarerar variabeln k som 5 från början och sen ändrar vi aldrig på den.
-    När vi tillkallar changeValue så ändrar den på värdet i instancen, inte värdet som vi först deklarerar.
 
-
+* 	Förklara varför varje rad av utskriften ser ut som den gör, rita 
+	gärna.
+    
+    k=5
+	a=1
+	b=0
+	Anledningen till att k fortfarande är 5 och inte 6 efter att 
+	changeValue ökat ingående värde är att det skapas en ny instans
+	som får värdet av k och inte en referens till k. a blir 1 för
+	att vi tillkallar befintlig instansmetod och då ökas just den 
+	instansen. Sedan blir b noll bara för att det skapas en ny 
+	temporär instans i metoden changeValue som sedan försvinner 
+	efter att metoden körts klart och därför förblir instansen i 
+	main oförändrad. 
 
 Del (c)
+
+* 	Vad händer om man gör om instansvariabeln i CounterModel som 
+	håller reda på räknaren till "static"?
+
+	 Om instansvariabeln ändras till en static så blir det en
+	 klassvariabel. Det fyller ingen funktion att skapa flera olika 
+	 instanser av counterModel då dem alla refererar till samma 
+	 värde. Ändrar du första instansen ändras alla andra också. 
+
+*	Skall denna metod getNbrOfCounters() vara en klassmetod eller 
+	en instansmetod? Kan den vara bägge? Vilket är lämpligast?
+
+	getNbrOfCounters() kan vara både och. Det mest logiska och bästa
+	är att göra den till en klassmetod. Anledningarna är att 
+	variabeln NbrOfCounters ska räkna antalet skapade instanser.
+	Vilket medför att den måste vara en klassvariabel. Det känns 
+	även logiskt rätt att "fråga" klassen efter en klassvariabel än 
+	att fråga en instans om klassvariabeln. Ett problem med det
+	sistnämnda är att ifall ingen instans är skapad kan inget 
+	retuneras då inga instansmetoder finns att fråga, vilket kan 
+	göras med en klassmetod då den alltid existerar.
+	Slutsats: static metoder för klassvariabler och metoder utan 
+	static för instansvariabler. 
