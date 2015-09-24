@@ -21,7 +21,7 @@ Del (b)
 
 Del (c)
 
-* 	Vad händer om man gör om instansvariabeln i CounterModel som 
+* 	Vad händer om man gör om instansvariabeln i CounterModel som
 	håller reda på räknaren till "static"?
 
 	 Om instansvariabeln ändras till en static så blir det en
