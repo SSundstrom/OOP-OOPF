@@ -1,65 +1,82 @@
+import java.util.LinkedList;
+import java.util.List;
+
 public class TestCounter {
- public static void main(String[] args) {
 
-     CounterModel counterA = new CounterModel();
-     CounterModel counterB = new CounterModel();
-     CounterModel counterC = new CounterModel();
-     System.out.println(CounterModel.getNbrOfCounters());
-     CounterModel counterD = new CounterModel();
-     CounterModel counterE = new CounterModel();
-     CounterModel counterF = new CounterModel();
+    public static void main(String[] args) {
 
-     //     Changes in counterA
-     for (int i = 0; i < 6; i++) {
-         counterA.increment();
-     }
-     //     Changes in counterB
-     for (int i = 0; i < 10; i++) {
-         counterB.decrement();
-     }
+        List<CounterModel> counters = new LinkedList<>();
 
-     //     Changes in counterC
-     for (int i = 0; i < 5; i++) {
-         counterC.decrement();
-     }
-     System.out.println("Counter C (after decrements) = " + counterC.getValue());
-     counterC.reset();
+        CounterModel counterA = new CounterModel();
+        counters.add(counterA);
+        CounterModel counterB = new CounterModel();
+        counters.add(counterB);
+        CounterModel counterC = new CounterModel();
+        counters.add(counterC);
+        CounterModel counterD = new CounterModel();
+        counters.add(counterD);
+        CounterModel counterE = new CounterModel();
+        counters.add(counterE);
+        CounterModel counterF = new CounterModel();
+        counters.add(counterF);
 
-     //     Changes in counterD
-     for (int i = 0; i < 10; i++) {
-         counterD.increment();
-     }
 
-     //     Changes in counterE
-     while (counterE.getValue() < 20) {
-         counterE.decrement();
-         counterE.increment();
-         counterE.increment();
-     }
+        //     Changes in counterA
+        for (int i = 0; i < 6; i++) {
+            counterA.increment();
+        }
+        //     Changes in counterB
+        for (int i = 0; i < 10; i++) {
+            counterB.decrement();
+        }
+        //     Changes in counterC
+        for (int i = 0; i < 5; i++) {
+            counterC.decrement();
+        }
+        counterC.reset();
+        //     Changes in counterD
+        for (int i = 0; i < 10; i++) {
+            counterD.increment();
+        }
+        //     Changes in counterE
+        while (counterE.getValue() < 20) {
+            counterE.decrement();
+            counterE.increment();
+            counterE.increment();
+        }
+        //     Changes in counterF
+        counterF.increment();
+        while (counterF.getValue() > 0)
+            counterF.reset();
 
-     //     Changes in counterF
-     counterF.increment();
-     while (counterF.getValue() > 0)
-         counterF.reset();
+        if (test("A", counterA, 6) &&
+            test("B", counterB, -10) &&
+            test("C", counterC, 0) &&
+            test("D", counterD, 10) &&
+            test("E", counterE, 20) &&
+            test("F", counterF, 0) &&
+            testNbrOfCounters(counters))
+            {
 
-     System.out.println("Counter A = " + counterA.getValue());
-     System.out.println("Counter B = " + counterB.getValue());
-     System.out.println("Counter C = " + counterC.getValue());
-     System.out.println("Counter D = " + counterD.getValue());
-     System.out.println("Counter E = " + counterE.getValue());
-     System.out.println("Counter F = " + counterF.getValue());
+            System.out.println("All tests cleared.");
+        }
 
-     if (test(counterA, 6)
-             && test(counterB, -10)
-             && test(counterC, 0) && test(counterD, 10) && test(counterE, 20) && test(counterF, 0)) {
-         System.out.println("All test cleared");
-     } else {
-         System.out.println("FAILED! somewhere");
-     }
-     System.out.println(CounterModel.getNbrOfCounters());
+    }
 
- }
-    public static boolean test(CounterModel counter, int ans) {
-       return ans == counter.getValue();
+        public static boolean test(String nr, CounterModel counter, int ans) {
+            if (ans == counter.getValue()) {
+                System.out.println("counter" + nr + " test cleared");
+                return true;
+            }
+            System.out.println("Wrong answer in counter" + nr);
+            return false;
+        }
+    public static boolean testNbrOfCounters(List counters) {
+        if (CounterModel.getNbrOfCounters() == counters.size()) {
+            System.out.println("Number of counters test cleared");
+            return true;
+        }
+        System.out.println("Not picking up the correct amount of counters");
+        return false;
     }
 }
