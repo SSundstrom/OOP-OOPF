@@ -45,7 +45,7 @@ public class TestCounter {
             counterD.increment();
         }
         //     Changes in counterE
-        while (counterE.getValue() < counterE.getModulus() - 5) {
+        while (counterE.getValue() < counterE.getModulus() - 4) {
             counterE.decrement();
             counterE.increment();
             counterE.increment();
@@ -56,21 +56,22 @@ public class TestCounter {
             counterF.reset();
 
 
+
+
         if (test("A", counterA, 6) &&
                 test("B", counterB, 0) &&
                 test("C", counterC, 0) &&
                 test("D", counterD, 9) &&
-                test("E", counterE, 5) &&
+                test("E", counterE, 6) &&
                 test("F", counterF, 0) &&
+                test("A", counterA,"B", counterB, false) &&
+                test("H", counterH,"G", counterG, true) &&
+                test("E", counterE,"G", counterG, false) &&
                 testNbrOfCounters(counters)){
+
 
             System.out.println("All tests cleared.");
         }
-       if(counterH.equals(counterF)){
-           System.out.println("Equals passed");
-        }else{
-           System.out.println("Equals failed");
-       }
     }
     public static boolean test(String nr, CounterModel counter, int ans) {
         if (ans == counter.getValue()) {
@@ -79,6 +80,24 @@ public class TestCounter {
         }
         System.out.println("Wrong answer in counter" + nr);
         return false;
+    }
+    public static boolean test(String os1, Object o1, String os2, Object o2, boolean b) {
+        System.out.print("Equals test for counter" + os1 + " and counter" + os2);
+        CounterModel cmo1 = (CounterModel) o1;
+        CounterModel cmo2 = (CounterModel) o2;
+        String s = " == ";
+        if (o1.equals(o2) == b) {
+            System.out.print(" cleared");
+            b = true;
+        } else {
+            System.out.print(" failed");
+            b = false;
+        }
+        if (!o1.equals(o2)) {
+            s = " != ";
+        }
+        System.out.println("\t" + cmo1.getValue() + s + cmo2.getValue());
+        return b;
     }
 
     public static boolean testNbrOfCounters(List counters) {
