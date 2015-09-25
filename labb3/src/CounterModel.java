@@ -10,7 +10,7 @@ public class CounterModel {
         this(10);
     }
     public CounterModel(int max){
-        if(max < 0){
+        if(max+1 < 0){
             throw new IllegalArgumentException();
         }
         this.modulus = max;
@@ -33,10 +33,8 @@ public class CounterModel {
         this.value = 0;
 
     }
-    public String toString(){ //TODO
-
-
-        return "";
+    public String toString() {
+        return Integer.toString(getValue());
     }
     public boolean equals(Object cm){
         if(this == cm){

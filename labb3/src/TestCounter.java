@@ -8,6 +8,7 @@ public class TestCounter {
 
         List<CounterModel> counters = new LinkedList<>();
 
+
         CounterModel counterA = new CounterModel();
         counters.add(counterA);
         CounterModel counterB = new CounterModel();
@@ -67,11 +68,17 @@ public class TestCounter {
                 test("A", counterA,"B", counterB, false) &&
                 test("H", counterH,"G", counterG, true) &&
                 test("E", counterE,"G", counterG, false) &&
-                testNbrOfCounters(counters)){
+                test("D", counterD) &&
+                test("F", counterF) &&
+                test("A", counterA) &&
+                testNbrOfCounters(counters)) {
 
 
             System.out.println("All tests cleared.");
+            CounterModel[] countersArray = counters.toArray(new CounterModel[counters.size()]);
+            printCounters(countersArray);
         }
+
     }
     public static boolean test(String nr, CounterModel counter, int ans) {
         if (ans == counter.getValue()) {
@@ -98,6 +105,23 @@ public class TestCounter {
         }
         System.out.println("\t" + cmo1.getValue() + s + cmo2.getValue());
         return b;
+    }
+    public static boolean test(String s, Object o) {
+        if (o.toString().getClass() == String.class) {
+            System.out.println("counter" + s + " successfully converted to string");
+            return true;
+        }
+        System.out.println("counter" + s + " successfully converted to string");
+        return false;
+    }
+    public static void printCounters(CounterModel[] arrayOfCMs) {
+        int i = 0;
+        for (CounterModel cm : arrayOfCMs) {
+            if (cm != null) {
+                i++;
+                System.out.println("Counter number " + i + "\thas counter value " + cm.toString());
+            }
+        }
     }
 
     public static boolean testNbrOfCounters(List counters) {
