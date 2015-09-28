@@ -24,10 +24,10 @@ Del (c)
 * 	Vad händer om man gör om instansvariabeln i CounterModel som
 	håller reda på räknaren till "static"?
 
-	 Om instansvariabeln ändras till en static så blir det en
-	 klassvariabel. Det fyller ingen funktion att skapa flera olika 
-	 instanser av counterModel då dem alla refererar till samma 
-	 värde. Ändrar du första instansen ändras alla andra också. 
+	Om instansvariabeln ändras till en static så blir det en
+	klassvariabel. Det fyller ingen funktion att skapa flera olika 
+	instanser av counterModel då dem alla refererar till samma 
+	värde. Ändrar du första instansen ändras alla andra också. 
 
 *	Skall denna metod getNbrOfCounters() vara en klassmetod eller 
 	en instansmetod? Kan den vara bägge? Vilket är lämpligast?
@@ -43,3 +43,20 @@ Del (c)
 	göras med en klassmetod då den alltid existerar.
 	Slutsats: static metoder för klassvariabler och metoder utan 
 	static för instansvariabler. 
+
+Del (e)
+
+*	Vad innebär det att två räknare är lika?
+
+	Att två räknare är lika innebär att deras nuvarande värde är 
+	samma samt att de båda har samma vändpunkt/modulusvärde. 
+	Alternativt att båda är instanser av samma objekt.
+	
+Del (h)
+
+*	Vad händer om man anropar increment på en FastCounter?
+
+	När increment tillkallas på en FastCounter så tillkallas metoden
+	från superklassen CounterModel. Skillnaden är att i FastCounter 
+	körs increment flera gånger med hjälp av en loop som tillagds i 
+	increment för FastCounter. 

@@ -1,6 +1,5 @@
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Objects;
 
 public class TestCounter {
 
@@ -72,20 +71,33 @@ public class TestCounter {
                 test("F", counterF) &&
                 test("A", counterA) &&
                 testNbrOfCounters(counters)) {
-
-
             System.out.println("All tests cleared.");
             CounterModel[] countersArray = counters.toArray(new CounterModel[counters.size()]);
             printCounters(countersArray);
         }
+        changeValue(counterA);
 
+        FastCounter fastA = new FastCounter();
+        FastCounter fastB = new FastCounter();
+        if(fastA.equals(fastB)){
+            System.out.println("Counters are equals");
+        }
+        else{
+            System.out.println("Counters are not equals");
+        }
     }
+
+
+
+
+
+
     public static boolean test(String nr, CounterModel counter, int ans) {
         if (ans == counter.getValue()) {
-            System.out.println("counter" + nr + " test cleared");
+            System.out.println("counter" + nr + " test cleared\t" + ans + " == " + counter.getValue());
             return true;
         }
-        System.out.println("Wrong answer in counter" + nr);
+        System.out.println("Wrong answer in counter" + nr + "\t" + ans + " != " + counter.getValue());
         return false;
     }
     public static boolean test(String os1, Object o1, String os2, Object o2, boolean b) {
@@ -126,10 +138,15 @@ public class TestCounter {
 
     public static boolean testNbrOfCounters(List counters) {
         if (CounterModel.getNbrOfCounters() == counters.size()) {
-            System.out.println("Number of counters test cleared");
+            System.out.println("Number of counters test cleared\t NbrOfCounters from class: " + CounterModel.getNbrOfCounters() + " == " + counters.size() + " instans variabel");
             return true;
         }
-        System.out.println("Not picking up the correct amount of counters");
+        System.out.println("Not picking up the correct amount of counters: " + CounterModel.getNbrOfCounters() + " != " + counters.size());
         return false;
+    }
+    public static void changeValue(CounterModel m){
+        System.out.println("Start value: " + m.toString());
+        m.increment();
+        System.out.println("Value after add: " + m.toString());
     }
 }
