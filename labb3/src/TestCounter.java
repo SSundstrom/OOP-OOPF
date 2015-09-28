@@ -92,6 +92,13 @@ public class TestCounter {
 
 
 
+    /**
+     * Compares values with correct value
+     * @param nr Name of Counter
+     * @param counter instance of counter to compare
+     * @param ans Right answer to compare with
+     * @return True if given answer is equals to instance value else false
+     */
     public static boolean test(String nr, CounterModel counter, int ans) {
         if (ans == counter.getValue()) {
             System.out.println("counter" + nr + " test cleared\t" + ans + " == " + counter.getValue());
@@ -100,6 +107,15 @@ public class TestCounter {
         System.out.println("Wrong answer in counter" + nr + "\t" + ans + " != " + counter.getValue());
         return false;
     }
+
+    /**
+     * Checks if equals works
+     * @param os1 name of first object
+     * @param o1 Instance of the first object
+     * @param os2 Name of second object
+     * @param o2 Instance of second object
+     * @return True if objects is identical or current value and modulus is equal otherwise false
+     */
     public static boolean test(String os1, Object o1, String os2, Object o2, boolean b) {
         System.out.print("Equals test for counter" + os1 + " and counter" + os2);
         CounterModel cmo1 = (CounterModel) o1;
@@ -118,6 +134,13 @@ public class TestCounter {
         System.out.println("\t" + cmo1.getValue() + s + cmo2.getValue());
         return b;
     }
+
+    /**
+     * Checks if toString works
+     * @param s Name of counter
+     * @param o object to compare against String class
+     * @return True if object successfully converts to String otherwise false
+     */
     public static boolean test(String s, Object o) {
         if (o.toString().getClass() == String.class) {
             System.out.println("counter" + s + " successfully converted to string");
@@ -126,6 +149,11 @@ public class TestCounter {
         System.out.println("counter" + s + " successfully converted to string");
         return false;
     }
+
+    /**
+     * Prints an array of CounterModels
+     * @param arrayOfCMs Array of counterModels
+     */
     public static void printCounters(CounterModel[] arrayOfCMs) {
         int i = 0;
         for (CounterModel cm : arrayOfCMs) {
@@ -136,6 +164,11 @@ public class TestCounter {
         }
     }
 
+    /**
+     * Checks number of created instances
+     * @param counters A list which contains every CounterModel instance
+     * @return True if class variable equals list length otherwise false
+     */
     public static boolean testNbrOfCounters(List counters) {
         if (CounterModel.getNbrOfCounters() == counters.size()) {
             System.out.println("Number of counters test cleared\t NbrOfCounters from class: " + CounterModel.getNbrOfCounters() + " == " + counters.size() + " instans variabel");
@@ -144,9 +177,21 @@ public class TestCounter {
         System.out.println("Not picking up the correct amount of counters: " + CounterModel.getNbrOfCounters() + " != " + counters.size());
         return false;
     }
-    public static void changeValue(CounterModel m){
-        System.out.println("Start value: " + m.toString());
+
+    /**
+     * Change the value on a CounterModel
+     * @param m CounterModel to change value on
+     * @return True if old value + 1 equals new value after increment otherwise false
+     */
+    public static boolean changeValue(CounterModel m){
+        int tmp = m.getValue() + 1;
         m.increment();
-        System.out.println("Value after add: " + m.toString());
+        if(tmp == m.getValue()){
+            System.out.println("changeValue worked");
+            return true;
+        }else{
+            System.out.println("changeValue failed");
+            return false;
+        }
     }
 }
