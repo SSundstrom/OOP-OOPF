@@ -78,7 +78,7 @@ public class CounterModel {
     }
 
     /**
-     * Return modulus value
+     * Getter for modulus value
      * @return counters modulus value
      */
     public int getModulus(){
@@ -86,7 +86,7 @@ public class CounterModel {
     }
 
     /**
-     * Return current Counter value
+     * Getter for current value
      * @return return current counter value
      */
     public int getValue(){
@@ -95,7 +95,7 @@ public class CounterModel {
     }
 
     /**
-     * Return number of counters created
+     * Getter for number of counters
      * @return number of counters created
      */
     public static int getNbrOfCounters(){

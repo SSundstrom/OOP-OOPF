@@ -24,7 +24,10 @@ public class TestCounter {
         counters.add((CounterModel)counterG);
         CounterModel counterH = new CounterModel();
         counters.add(counterH);
-
+        FastCounter fastA = new FastCounter();
+        counters.add((CounterModel) fastA);
+        FastCounter fastB = new FastCounter();
+        counters.add((CounterModel) fastB);
 
 
         //     Changes in counterA
@@ -52,11 +55,19 @@ public class TestCounter {
         }
         //     Changes in counterF
         counterF.increment();
-        while (counterF.getValue() > 0)
+        while (counterF.getValue() > 0) {
             counterF.reset();
+        }
 
 
-
+        if(fastA.equals(fastB)){
+            System.out.println("Counters are equals");
+        }
+        else{
+            System.out.println("Counters are not equals");
+        }
+        fastA.upMany();
+        fastB.downMany();
 
         if (test("A", counterA, 6) &&
                 test("B", counterB, 0) &&
@@ -70,26 +81,51 @@ public class TestCounter {
                 test("D", counterD) &&
                 test("F", counterF) &&
                 test("A", counterA) &&
-                testNbrOfCounters(counters)) {
-            System.out.println("All tests cleared.");
+                testNbrOfCounters(counters) &&
+                test("upMany", fastA) &&
+                test("downMany", fastB)&&
+                changeValue(counterA) &&
+                testFastStep(fastA)) {
+            System.out.println("####################################\nALL TESTS CLEARED\n");
             CounterModel[] countersArray = counters.toArray(new CounterModel[counters.size()]);
             printCounters(countersArray);
         }
-        changeValue(counterA);
 
-        FastCounter fastA = new FastCounter();
-        FastCounter fastB = new FastCounter();
-        if(fastA.equals(fastB)){
-            System.out.println("Counters are equals");
-        }
-        else{
-            System.out.println("Counters are not equals");
+    }
+
+    /**
+     * Compares values with correct value
+     * @param fasC instance of a FastCounter
+     * @return True if answer is equals to instance value else false
+     */
+    public static boolean testFastStep(FastCounter fasC){
+        int tmp = 15;
+        if(tmp == fasC.getModulus()){
+            System.out.println("Get FastCounter step passed, excepted value " + tmp + " value returned " + fasC.getModulus());
+            return true;
+        }else{
+            System.out.println("Get FastCounter step failed, excepted value " + tmp + " value returned " + fasC.getModulus());
+            return false;
         }
     }
 
+    /**
+     * Compares values with correct value
+     * @param metod Name of metod used
+     * @param fastC instance of counter to compare
+     * @return True if answer is equals to instance value else false
+     */
+    public static boolean test(String metod, FastCounter fastC){
+        int tmp = fastC.getValue();
+        if(fastC.getValue() == (tmp)){
+            System.out.println(metod + " function passed, excepted value " + fastC.getValue() + " value returned " + fastC.getValue());
+            return true;
+        } else{
+            System.out.println(metod + " function failed, value excepted " + (tmp) + " value returned " + fastC.getValue());
+            return false;
+        }
 
-
-
+    }
 
 
     /**
@@ -187,10 +223,10 @@ public class TestCounter {
         int tmp = m.getValue() + 1;
         m.increment();
         if(tmp == m.getValue()){
-            System.out.println("changeValue worked");
+            System.out.println("changeValue worked, excepted value " + tmp + " value returned " + m.getValue());
             return true;
         }else{
-            System.out.println("changeValue failed");
+            System.out.println("changeValue failed, excepted value " + tmp + " value returned" + m.getValue());
             return false;
         }
     }
