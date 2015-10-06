@@ -3,6 +3,12 @@ import java.util.List;
 
 public class TestCounter {
 
+    /**
+     * Main method
+     * @param args User input
+     * Tests CounterModel
+     */
+
     public static void main(String[] args) {
 
         List<CounterModel> counters = new LinkedList<>();
@@ -82,8 +88,8 @@ public class TestCounter {
                 test("F", counterF) &&
                 test("A", counterA) &&
                 testNbrOfCounters(counters) &&
-                test("upMany", fastA) &&
-                test("downMany", fastB)&&
+                test("upMany", fastA, 5) &&
+                test("downMany", fastB, 9)&&
                 changeValue(counterA) &&
                 testFastStep(fastA)) {
             System.out.println("####################################\nALL TESTS CLEARED\n");
@@ -94,9 +100,9 @@ public class TestCounter {
     }
 
     /**
-     * Compares values with correct value
+     * Compares the FastCounters modulus value with the correct value
      * @param fasC instance of a FastCounter
-     * @return True if answer is equals to instance value else false
+     * @return True if the answer is equal to the instance value else false
      */
     public static boolean testFastStep(FastCounter fasC){
         int tmp = 15;
@@ -110,18 +116,17 @@ public class TestCounter {
     }
 
     /**
-     * Compares values with correct value
+     * Compares FastCounter counter value with the correct value
      * @param metod Name of metod used
      * @param fastC instance of counter to compare
      * @return True if answer is equals to instance value else false
      */
-    public static boolean test(String metod, FastCounter fastC){
-        int tmp = fastC.getValue();
-        if(fastC.getValue() == (tmp)){
-            System.out.println(metod + " function passed, excepted value " + fastC.getValue() + " value returned " + fastC.getValue());
+    public static boolean test(String metod, FastCounter fastC, int correct){
+        if(fastC.getValue() == correct){
+            System.out.println(metod + " function passed, excepted value " + correct + " value returned " + fastC.getValue());
             return true;
         } else{
-            System.out.println(metod + " function failed, value excepted " + (tmp) + " value returned " + fastC.getValue());
+            System.out.println(metod + " function failed, value excepted " + correct + " value returned " + fastC.getValue());
             return false;
         }
 

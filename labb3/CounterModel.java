@@ -4,7 +4,7 @@ public class CounterModel {
     private static int NbrOfCounters;
 
     /**
-     * Initialize defualt values
+     * Initialize default values
      */
     public CounterModel(){
 
@@ -13,7 +13,7 @@ public class CounterModel {
 
     /**
      * Initialize with modulus value
-     * IF parameter less then one, throw IllegalArgumentException
+     * If parameter less then one, throw IllegalArgumentException
      * @param modulus Modulus value, must be bigger then 0
      */
     public CounterModel(int modulus){
