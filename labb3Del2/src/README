@@ -1,0 +1,20 @@
+* Hur kom vi fram till vår lösning?
+
+Det första vi började med var att visualisera uppgiften
+och testa olika idéer på papper. Vi formulerade uttryck
+och pseudokod att ha till hjälp vid programmeringen 
+samt klarlägga hur rekursionen fungerar. När markering 
+av rätt väg ska sättas och hur det ska retuneras. 
+
+Vår första version lyckades hitta rätt väg genom att 
+markera alla felaktiga vägar som rätt och använda dessa
+markeringar som stopp för att inte gå in på samma spår
+igen. 
+
+Efter mer viusalisering och undersökning av rekursion 
+kom vi fram till att vi kunde göra samma sak istället
+för att lägga ut ett stop retuneras false vilket ger i
+praktiken samma resultat som innan fast med rätt 
+markeringar då vi ändrade så det sista som sker 
+retunerar true genom hela rekursionen och då skrivs 
+rätt väg ut. 
