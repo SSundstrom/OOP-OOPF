@@ -1,15 +1,18 @@
 public class LabSolver {
 
     public static void main(String[] args) {
+        //Set the size of the labyrinth
         int width = 20;
         int height = 10;
         if (args.length > 1) {
             width = Integer.parseInt(args[0]);
             height = Integer.parseInt(args[1]);
         }
+        //Creates a new randomized labyrinth
         Labyrinth l = new Lab(width,height);
         System.out.println("\nCreated a random labyrinth:");
         System.out.println(l);
+        //Checks if we are at the "end" of the labyrinth
         boolean success = findPath(0,0,width-1,height-1,l);
         if (success) {
             System.out.println("Solution found:");
@@ -21,7 +24,7 @@ public class LabSolver {
     }
 
     public static boolean findPath(int x0, int y0, int x1, int y1, Labyrinth l) {
-        //If this position is mark this is wrong way
+        //If this position is marked we have reached a dead end
         if(l.getMark(x0,y0)){
             return false;
         }
@@ -55,7 +58,7 @@ public class LabSolver {
                 return true;
             }
         }
-        //Sets way to false because right way already found, no possible way or is in a dead end
+        //Sets way to false because right way was already found or it's a dead end
         l.setMark(x0,y0,false);
         return false;
     }
