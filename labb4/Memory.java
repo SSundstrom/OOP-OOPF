@@ -1,7 +1,11 @@
 import javax.swing.*;
+import javax.swing.Timer;
 import java.awt.*;
 import java.awt.event.*;
+import java.awt.print.Printable;
 import java.io.File;
+import java.util.*;
+import java.util.List;
 
 public class Memory implements ActionListener  {
 
@@ -11,18 +15,46 @@ public class Memory implements ActionListener  {
     private JPanel gameboard;
     private JButton nytt;
     private JButton avsluta;
+    private Kort[] visableCards;
+    private List<String> spelare;
+    private List<Integer> points;
+    private Timer t;
+    private int playerTurn;
 
 
     public Memory() {
         rows = 0;
         columns = 0;
+        visableCards = new Kort[2];
+        spelare = new ArrayList<>();
+        points = new ArrayList<>();
+        t = new Timer(1500, this);
     }
 
     public void actionPerformed(ActionEvent e) {
-        System.out.println(e.getSource().getClass());
-        if (e.getSource().getClass() == Kort.class) {
+        t.stop();
+        if (e.getSource().equals(t)) {
+            if (visableCards[0].equals(visableCards[1])) {
+                int i = points.get(playerTurn) + 1;
+                points.set(playerTurn, i);
+            } else {
+                visableCards[0].setStatus(Kort.Status.DOLT);
+                visableCards[1].setStatus(Kort.Status.DOLT);
+                visableCards[0] = null;
+                visableCards[1] = null;
+                nextPlayer();
+            }
+
+        } else if (e.getSource().getClass() == Kort.class) {
             Kort k = (Kort)e.getSource();
             k.setStatus(Kort.Status.SYNLIGT);
+
+            if (visableCards[0] == null) {
+                visableCards[0] = k;
+            } else {
+                visableCards[1] = k;
+                t.start();
+            }
         } else if (e.getSource().getClass() == JButton.class) {
             if (e.getSource().equals(avsluta)) {
                 JOptionPane.showMessageDialog(null, "Hejdå!");
@@ -47,6 +79,11 @@ public class Memory implements ActionListener  {
 
         }
     }
+    public void nextPlayer() {
+        playerTurn++;
+        playerTurn = playerTurn%2;
+
+    }
 
 
     public int askSize(String s) {
@@ -63,16 +100,25 @@ public class Memory implements ActionListener  {
         return width;
     }
     public void createWindow() {
+
         int width;
         int height;
 
         do {
-          width = askSize("columns");
+            width = askSize("columns");
         } while (width == 0);
 
         do {
-          height = askSize("rows");
+            height = askSize("rows");
         } while (height == 0);
+
+        String p1 = JOptionPane.showInputDialog("Player 1 name?");
+        String p2 = JOptionPane.showInputDialog("Player 2 name?");
+        spelare.add(0, p1);
+        spelare.add(1, p2);
+
+        points.add(0, 0);
+        points.add(1, 0);
 
         int pairs = width*height;
         rows = height;
@@ -103,7 +149,11 @@ public class Memory implements ActionListener  {
         JPanel score = new JPanel();
         score.setPreferredSize(new Dimension(width / 4, height - height/10));
         score.setBackground(Color.BLUE);
+        score.setLayout(new GridLayout(spelare.size(), 1));
         base.add(score, BorderLayout.WEST);
+        scoreBoxes(0, score);
+        scoreBoxes(1, score);
+
         score.setVisible(true);
 
         gameboard = new JPanel();
@@ -125,8 +175,32 @@ public class Memory implements ActionListener  {
 
     }
 
+    public void scoreBoxes(int i, JPanel s) {
+        JPanel box  = new JPanel();
+        s.add(box);
+        box.setBorder(BorderFactory.createLineBorder(Color.BLACK, 5));
+        box.setLayout(new GridLayout(2,1));
+        JPanel nameBox  = new JPanel();
+        box.add(nameBox);
+        JPanel pointsBox  = new JPanel();
+        box.add(pointsBox);
+
+        JLabel name = new JLabel(spelare.get(i));
+        name.setFont(new Font("Arial", Font.BOLD, 25));
+        nameBox.add(name);
+        JLabel score = new JLabel(points.get(i).toString());
+        score.setFont(new Font("Arial", Font.PLAIN, 30));
+        pointsBox.add(score);
+    }
+
 
     public void nyttSpel() {
+
+        points.add(0, 0);
+        points.add(1, 0);
+        Random r = new Random();
+        playerTurn = r.nextInt(2);
+
         int n = rows*columns;
         Kort[] cardsInPlay = new Kort[n];
 
@@ -152,6 +226,7 @@ public class Memory implements ActionListener  {
 
 
     public static void main(String[] args) {
+
         Memory m = new Memory();
         m.cards();
         m.createWindow();
