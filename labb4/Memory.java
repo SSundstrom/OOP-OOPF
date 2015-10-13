@@ -28,6 +28,7 @@ public class Memory implements ActionListener  {
                 JOptionPane.showMessageDialog(null, "Hejdå!");
                 System.exit(0);
             } else if (e.getSource().equals(nytt)) {
+                gameboard.setVisible(false);
                 gameboard.removeAll();
                 nyttSpel();
             }
@@ -97,11 +98,13 @@ public class Memory implements ActionListener  {
         options.setPreferredSize(new Dimension(width, height / 10));
         options.setLayout(new FlowLayout());
         base.add(options, BorderLayout.SOUTH);
+        options.setVisible(true);
 
         JPanel score = new JPanel();
         score.setPreferredSize(new Dimension(width / 4, height - height/10));
         score.setBackground(Color.BLUE);
         base.add(score, BorderLayout.WEST);
+        score.setVisible(true);
 
         gameboard = new JPanel();
         gameboard.setSize(width, height);
@@ -124,7 +127,6 @@ public class Memory implements ActionListener  {
 
 
     public void nyttSpel() {
-
         int n = rows*columns;
         Kort[] cardsInPlay = new Kort[n];
 
@@ -145,6 +147,7 @@ public class Memory implements ActionListener  {
             c.addActionListener(this);
             c.setStatus(Kort.Status.DOLT);
         }
+        gameboard.setVisible(true);
     }
 
 
