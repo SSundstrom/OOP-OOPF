@@ -33,6 +33,8 @@ public class Kort extends JColorfulButton {
                 break;
             case SYNLIGT:
                 setIcon(this.icon);
+                setBackground(Color.white);
+
         }
     }
     public Status getStatus(){
