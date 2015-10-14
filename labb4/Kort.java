@@ -1,11 +1,14 @@
+import javax.imageio.ImageReader;
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
 
 public class Kort extends JColorfulButton {
 
     private Icon icon;
     public enum Status {DOLT, SYNLIGT, SAKNAS};
     private Status status;
+
 
     public Kort(Icon icon){
         this(icon, Status.SAKNAS);
@@ -24,16 +27,20 @@ public class Kort extends JColorfulButton {
         this.status = status;
         switch (status){
             case DOLT:
-                setIcon(null);
-                setBackground(Color.blue);
+                setIcon(new ImageIcon("cardback2.png"));
+                setBackground(Color.white);
+                this.setBorder(BorderFactory.createLineBorder(Color.BLACK));
                 break;
             case SAKNAS:
                 setIcon(null);
                 setBackground(Color.white);
+                setOpaque(false);
+                this.setBorder(null);
                 break;
             case SYNLIGT:
                 setIcon(this.icon);
                 setBackground(Color.white);
+                this.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 
         }
     }
