@@ -24,9 +24,9 @@ public class Memory implements ActionListener  {
     private boolean active;
     private int removedPairs;
 
-//    Konstruktorn för klassen memory.
-//    Den initierar många av memorys klassvariabler
-
+    /**
+     * Intialize a memory instance with default values
+     */
     public Memory() {
         rows = 0;
         columns = 0;
@@ -39,9 +39,10 @@ public class Memory implements ActionListener  {
         active = true;
     }
 
-//  actionPerformed tar in data från användaren och ger respons
-//  beroende på datan den får in.
-
+    /**
+     * Action event handler
+     * @param e Event object
+     */
     public void actionPerformed(ActionEvent e) {
         if (e.getSource().equals(t)) {
             t.stop();
@@ -91,9 +92,9 @@ public class Memory implements ActionListener  {
         }
     }
 
-//  cards är en metod som tar in de bilder som ligger i
-//  image mappen och gör dem tillgängliga för programmet
-
+    /**
+     * Initialize the cards in the game
+     */
     public void cards() {
         File bildmapp = new File("image");
         File[] bilder = bildmapp.listFiles();
@@ -106,8 +107,11 @@ public class Memory implements ActionListener  {
         }
     }
 
-//  askSize är en metod som frågar användaren vilket
-//  antal rader eller kolumner man vill ha
+    /**
+     * Method to ask the user how many colums or rows
+     * @param s Name of input
+     * @return The value to set size
+     */
     public int askSize(String s) {
         int width = 0;
         String stringWidth = JOptionPane.showInputDialog("How many " + s + " do you want?");
@@ -122,9 +126,9 @@ public class Memory implements ActionListener  {
         return width;
     }
 
-//  createWindow är en metod som skapar det fönster vi spelar i.
-//  Den sätter även in spelarnamnen och skapar listor för informationen runt spelarna.
-
+    /**
+     * Method to create the game window. Which provide information about players' name and score.
+     */
     public void createWindow() {
 
         int width;
@@ -202,8 +206,11 @@ public class Memory implements ActionListener  {
 
     }
 
-//  Skapar en ruta för att kunna visa informationen som här till en specifik spelare.
-
+    /**
+     * Method to create individual info window for each player
+     * @param i defines which user is playing
+     * @param s in which panel to pt info in
+     */
     public void scoreBoxes(int i, JPanel s) {
         JPanel box  = new JPanel();
         s.add(box);
@@ -226,8 +233,11 @@ public class Memory implements ActionListener  {
         playerScores.add(i, score);
         playerBox.add(i, box);
     }
-//  Medtod som kallas då spelet är slut
 
+    /**
+     * Method which runs when game ended
+     * Checks who won and ask user to play again
+     */
     public void won() {
         int j = -1;
         String winner = "";
@@ -251,8 +261,9 @@ public class Memory implements ActionListener  {
         }
     }
 
-//  Går vidare till nästa spelare i listan
-
+    /**
+     * Method to pass to the next player
+     */
     public void nextPlayer() {
         playerBox.get(playerTurn).setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
         playerBox.get(playerTurn).setBackground(Color.LIGHT_GRAY);
@@ -263,10 +274,9 @@ public class Memory implements ActionListener  {
         playerBox.get(playerTurn).setBackground(Color.WHITE);
     }
 
-//  Gör 2 olika saker beroende på vilken boolean du ger den.
-//  Om du ger den true så kommer den öka poängen för spelare i.
-//  Om du ger den falskt så kommer den bara göra en uppdatering rutan som poängen visas i
-
+    /**
+     * Method to update the scores if user is correct
+     */
     public void updateScore(int i, boolean sant) {
         if(sant) {
             int temp = points.get(i) + 1;
@@ -278,10 +288,10 @@ public class Memory implements ActionListener  {
         playerScores.get(i).repaint();
     }
 
-//  Påbörjar ett nytt spel genom att välja ut bilder ur image mappen
-//  och populera spelplanen med ett visst antal kort.
-//  Den återställer även poängen för båda spelarna
-
+    /**
+     * Method to create a new game.
+     * Choose new images, initialize images and reset previous scores
+     */
     public void nyttSpel() {
         visableCards[0] = null;
         visableCards[1] = null;
@@ -318,7 +328,10 @@ public class Memory implements ActionListener  {
         gameboard.setVisible(true);
     }
 
-
+    /**
+     * Main method to run the program
+     * @param args User input
+     */
     public static void main(String[] args) {
 
         Memory m = new Memory();
