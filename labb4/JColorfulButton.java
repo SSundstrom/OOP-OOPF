@@ -2,12 +2,6 @@ import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
 
-// Skriven av Magnus MyrÃ©en fÃ¶r att fÃ¥ Memory
-// labben att se bra ut pÃ¥ Mac OS X.
-
-// Skicka mig epost (myreen@chalmers.se) ifall
-// du hittar buggar i koden!
-
 public class JColorfulButton extends JLabel
         implements MouseListener {
 

@@ -1,3 +1,9 @@
+/**
+* Author: Simon Sundström & Felix Jansson
+* Grupp 9
+* TDA545
+*/
+
 import java.util.Random;
 
 public class Verktyg {
