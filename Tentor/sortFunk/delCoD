@@ -1,0 +1,9 @@
+c)
+  loopen gör så att den kommer sätta a[0] = 0, a[1] = 1 o.s.v. vilket gör att arrayen är
+  i ordning men man har tagit bort de värden man hade i den från början.
+
+d)
+  man kan kolla ifall den sorterade arrayen innehåller samma saker.
+  man skulle kunna kolla ifall sorteringen alltid blir likadan då det inte borde hända,
+  speciellt inte 1000 ggr i rad.
+  

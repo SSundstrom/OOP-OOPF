@@ -1,0 +1,41 @@
+public class peterSort {
+
+  public static void main(String[] args) {
+    int[] a = generateRandomArray();
+    printIntArray(a);
+
+  }
+
+// a)
+  public int[] generateRandomArray() {
+
+    int randomLength = Math.random();
+    int[] array = new int[randomLength];
+
+    for (int i = 0; i < randomLength; i++) {
+      array[i] = Math.random();
+    }
+
+  }
+
+// b)
+  public boolean isInOrder(int[] array) {
+    int temp = 0;
+    for (int i : array) {
+      if (i > temp) {
+        return false;
+      }
+      temp = i;
+    }
+  }
+
+  public void printIntArray(int[] array) {
+    String a  = "";
+    for (Int i : array) {
+      a = a + "[ " + i + " ]  "
+    }
+    System.out.println(a);
+    System.out.println(isInOrder(array));
+  }
+
+}
