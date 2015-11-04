@@ -1,5 +1,5 @@
-public class egen {
-  class IntIntEx extends Exception {
+
+class IntIntEx extends Exception {
     private int a;
     private int b;
     public IntIntEx(int i, int j) {
@@ -7,6 +7,9 @@ public class egen {
       b = j;
     }
   }
+
+public class egen {
+
   public static void main(String[] args) {
     egen e = new egen();
   }

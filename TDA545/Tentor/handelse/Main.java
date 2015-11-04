@@ -17,16 +17,17 @@ public class Main extends JFrame {
       addMouseListener(this);
       setLayout(new BorderLayout());
       JButton button = new JButton("Exit");
-      add(button);
+      add(button, BorderLayout.SOUTH);
       button.addActionListener(this);
       button.setActionCommand("exit");
+      setBackground(Color.blue);
     }
 
     public void paintComponent(Graphics g) {
       super.paintComponent(g);
       g.setColor(Color.red);
       g.fillRect(x-10, y-10, 20, 20);
-      setBackground(Color.blue);
+
 
     }
 
@@ -45,12 +46,16 @@ public class Main extends JFrame {
     }
     public void mouseEntered(MouseEvent e){}
     public void mouseExited(MouseEvent e){}
-    public void mousePressed(MouseEvent e){}
-    public void mouseReleased(MouseEvent e){}
-
-
+    public void mousePressed(MouseEvent e){
+        setBackground(Color.white);
+        repaint();
+        System.out.println("pressed");
+    }
+    public void mouseReleased(MouseEvent e){
+        setBackground(Color.black);
+        repaint();
+    }
   }
-
 
   public Main() {
     super();
