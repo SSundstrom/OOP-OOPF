@@ -46,7 +46,7 @@ public class SnakeModel extends GameModel {
     private static final GameTile BLANK_TILE = new GameTile();
 
     /** A list containing the positions of all body parts. */
-    private final List<Position> body = new ArrayList<Position>();
+    private List<Position> body = new ArrayList<Position>();
 
     /** The position of the snake. */
     private Position snakePos;
@@ -69,10 +69,12 @@ public class SnakeModel extends GameModel {
 
         // Insert the Snake in the middle of the gameboard.
         this.snakePos = new Position(size.width / 2, size.height / 2);
-        setGameboardState(this.snakePos, SNAKE_TILE);
+        body.add(this.snakePos);
+        setGameboardState(body.get(0), SNAKE_TILE);
 
         //Insert first food.
         addFood();
+
     }
 
     private void addFood(){
@@ -83,7 +85,7 @@ public class SnakeModel extends GameModel {
         do{
             foodPos = new Position(r.nextInt(size.width), r.nextInt(size.height));
         }while (!isPositionEmpty(foodPos));
-            setGameboardState(foodPos, FOOD_TILE);
+        setGameboardState(foodPos, FOOD_TILE);
 
     }
 
@@ -91,30 +93,72 @@ public class SnakeModel extends GameModel {
         return getGameboardState(pos) == BLANK_TILE;
     }
 
-        public void gameUpdate(int lastKey) throws GameOverException {
-            updateDirection(lastKey); //TODO make this method
+    private void updateDirection(final int key) {
+        switch (key) {
+            case KeyEvent.VK_LEFT:
+                if(this.direction != Directions.EAST) {
+                    this.direction = Directions.WEST;
+                }
+                break;
+            case KeyEvent.VK_UP:
+                if(this.direction != Directions.SOUTH) {
+                    this.direction = Directions.NORTH;
+                }
+                break;
+            case KeyEvent.VK_RIGHT:
+                if(this.direction != Directions.WEST) {
+                    this.direction = Directions.EAST;
+                }
+                break;
+            case KeyEvent.VK_DOWN:
+                if(this.direction != Directions.NORTH) {
+                    this.direction = Directions.SOUTH;
+                }
+                break;
+            default:
+                // Don't change direction if another key is pressed
+                break;
+        }
+    }
 
-            // Erase the previous position.
-            setGameboardState(this.snakePos, BLANK_TILE);
+    private Position getNextSnakePos() {
+        return new Position(
+                this.snakePos.getX() + this.direction.getXDelta(),
+                this.snakePos.getY() + this.direction.getYDelta());
+    }
+
+        public void gameUpdate(int lastKey) throws GameOverException {
+            updateDirection(lastKey);
+            // Erase the last position.
+
+            setGameboardState(body.get(0), BLANK_TILE);
             // Change collector position.
-            this.snakePos = getNextSnakePos(); //TODO make this metod
+            this.snakePos = getNextSnakePos();
 
             if (isOutOfBounds(this.snakePos)) {
                 throw new GameOverException(this.score);
             }
-            // Draw snake at new position.
+            if (getGameboardState(this.snakePos) == FOOD_TILE){
+                body.add(this.snakePos);
+                addFood();
+                score++;
+            }
+            // Draw collector at new position.
             setGameboardState(this.snakePos, SNAKE_TILE);
 
-            // Remove the food at the new collector position (if any)
-            if (true) {
-                //TODO add a new body part to list 'body'
-                this.score++;
-            }
-            Dimension tmp = getGameboardSize();
-            int isMax = tmp.width * tmp.height;
-            if (this.body.size() == isMax ) {
-                throw new GameOverException(this.score);
-            }
+
+            // Remove the coin at the new collector position (if any)
+
+
+            // Check if all coins are found
+
+
+            // Remove one of the coins
+
+
+            // Add a new coin (simulating moving one coin)
+
+
         }
 
     private boolean isOutOfBounds(Position pos){
