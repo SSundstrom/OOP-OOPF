@@ -38,12 +38,13 @@
       <file leaf-file-name="SnakeModel.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/lab1/SnakeModel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6302521">
-              <caret line="37" column="67" selection-start-line="37" selection-start-column="67" selection-end-line="37" selection-end-column="67" />
+            <state vertical-scroll-proportion="0.57382953">
+              <caret line="155" column="47" selection-start-line="155" selection-start-column="47" selection-end-line="155" selection-end-column="47" />
               <folding>
                 <element signature="class#Directions#0;class#SnakeModel#0" expanded="false" />
                 <element signature="method#Directions#0;class#Directions#0;class#SnakeModel#0" expanded="false" />
                 <element signature="docComment;field#FOOD_TILE#0;class#SnakeModel#0" expanded="false" />
+                <element signature="docComment;field#SNAKE_HEAD_TILE#0;class#SnakeModel#0" expanded="false" />
                 <element signature="docComment;field#BLANK_TILE#0;class#SnakeModel#0" expanded="false" />
                 <element signature="docComment;field#body#0;class#SnakeModel#0" expanded="false" />
                 <element signature="docComment;field#snakePos#0;class#SnakeModel#0" expanded="false" />
@@ -167,9 +168,9 @@
     <order />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="y" value="-6" />
+    <option name="y" value="36" />
     <option name="width" value="2560" />
-    <option name="height" value="1446" />
+    <option name="height" value="1404" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -194,7 +195,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -233,8 +233,9 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="Scratches" />
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -537,15 +538,15 @@
       <workItem from="1446707381527" duration="22527000" />
       <workItem from="1447107445773" duration="8708000" />
       <workItem from="1447232012008" duration="7188000" />
-      <workItem from="1447240131254" duration="127000" />
+      <workItem from="1447240606875" duration="64000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="47147000" />
+    <option name="totallyTimeSpent" value="47084000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="-6" width="2560" height="1446" extended-state="6" />
+    <frame x="0" y="36" width="2560" height="1404" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -640,6 +641,7 @@
             <element signature="class#Directions#0;class#SnakeModel#0" expanded="false" />
             <element signature="method#Directions#0;class#Directions#0;class#SnakeModel#0" expanded="false" />
             <element signature="docComment;field#FOOD_TILE#0;class#SnakeModel#0" expanded="false" />
+            <element signature="docComment;field#SNAKE_HEAD_TILE#0;class#SnakeModel#0" expanded="false" />
             <element signature="docComment;field#BLANK_TILE#0;class#SnakeModel#0" expanded="false" />
             <element signature="docComment;field#body#0;class#SnakeModel#0" expanded="false" />
             <element signature="docComment;field#snakePos#0;class#SnakeModel#0" expanded="false" />
@@ -764,6 +766,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="51" column="40" selection-start-line="51" selection-start-column="36" selection-end-line="51" selection-end-column="40" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -793,6 +796,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -836,6 +840,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.50039154">
           <caret line="39" column="7" selection-start-line="39" selection-start-column="7" selection-end-line="39" selection-end-column="7" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -904,12 +909,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/lab1/SnakeModel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6302521">
-          <caret line="37" column="67" selection-start-line="37" selection-start-column="67" selection-end-line="37" selection-end-column="67" />
+        <state vertical-scroll-proportion="0.57382953">
+          <caret line="155" column="47" selection-start-line="155" selection-start-column="47" selection-end-line="155" selection-end-column="47" />
           <folding>
             <element signature="class#Directions#0;class#SnakeModel#0" expanded="false" />
             <element signature="method#Directions#0;class#Directions#0;class#SnakeModel#0" expanded="false" />
             <element signature="docComment;field#FOOD_TILE#0;class#SnakeModel#0" expanded="false" />
+            <element signature="docComment;field#SNAKE_HEAD_TILE#0;class#SnakeModel#0" expanded="false" />
             <element signature="docComment;field#BLANK_TILE#0;class#SnakeModel#0" expanded="false" />
             <element signature="docComment;field#body#0;class#SnakeModel#0" expanded="false" />
             <element signature="docComment;field#snakePos#0;class#SnakeModel#0" expanded="false" />
