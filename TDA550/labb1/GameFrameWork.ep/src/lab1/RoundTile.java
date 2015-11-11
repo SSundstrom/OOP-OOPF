@@ -47,7 +47,7 @@ public class RoundTile extends GameTile {
 
 	/**
 	 * Creates a circular game tile with a stroke around it.
-	 * 
+	 *
 	 * @param strokeColor
 	 *            the color of the stroke around the circle.
 	 * @param fillColor
@@ -61,8 +61,21 @@ public class RoundTile extends GameTile {
 	}
 
 	/**
+	 * Draws itself in a given graphics context, position and size.
+	 *
+	 * @param g
+	 *            graphics context to draw on.
+	 * @param x
+	 *            pixel x coordinate of the tile to be drawn.
+	 * @param y
+	 *            pixel y coordinate of the tile to be drawn.
+	 * @param d
+	 *            size of this object in pixels.
+	 */
+
+	/**
 	 * Creates a circular game tile with a stroke around it.
-	 * 
+	 *
 	 * @param strokeColor
 	 *            the color of the stroke around the circle.
 	 * @param fillColor
@@ -79,19 +92,6 @@ public class RoundTile extends GameTile {
 		this.stroke = new BasicStroke((float) thickness);
 		this.scale = scale;
 	}
-
-	/**
-	 * Draws itself in a given graphics context, position and size.
-	 * 
-	 * @param g
-	 *            graphics context to draw on.
-	 * @param x
-	 *            pixel x coordinate of the tile to be drawn.
-	 * @param y
-	 *            pixel y coordinate of the tile to be drawn.
-	 * @param d
-	 *            size of this object in pixels.
-	 */
 	@Override
 	public void draw(final Graphics g, final int x, final int y,
 			final Dimension d) {
