@@ -36,7 +36,9 @@ public class SnakeModel extends GameModel {
 
     /** Graphical representation of the snake body part*/
     private static final HeadTile SNAKE_HEAD_TILE = new HeadTile();
-    private static final GameTile SNAKE_BODY_TILE = new RectangularTile(Color.green);
+    private static final GameTile SNAKE_BODY_TILE_X = new BodyTileHorizontal(new Color(32, 83, 32), Color.red);
+    private static final GameTile SNAKE_BODY_TILE_Y = new BodyTileVertical(new Color(32, 83, 32), Color.red);
+
 
     /** Graphical representation of a blank tile. */
     private static final GameTile BLANK_TILE = new GameTile();
@@ -126,7 +128,11 @@ public class SnakeModel extends GameModel {
 
     private void moveSnake(){
         body.add(this.snakePos);
-        setGameboardState(this.snakePos,SNAKE_BODY_TILE);
+        if(this.direction == Directions.EAST || this.direction == Directions.WEST) {
+            setGameboardState(this.snakePos,SNAKE_BODY_TILE_X);
+        } else {
+            setGameboardState(this.snakePos,SNAKE_BODY_TILE_Y);
+        }
         this.snakePos = getNextSnakePos();
     }
 
@@ -134,7 +140,7 @@ public class SnakeModel extends GameModel {
             updateDirection(lastKey);
             moveSnake();
 //             Checks so game is not over
-            if (isOutOfBounds(this.snakePos) || getGameboardState(this.snakePos) == SNAKE_BODY_TILE) {
+            if (isOutOfBounds(this.snakePos) || getGameboardState(this.snakePos) == SNAKE_BODY_TILE_X || getGameboardState(this.snakePos) == SNAKE_BODY_TILE_Y) {
                 throw new GameOverException(this.score);
             }
             // Snake eats
