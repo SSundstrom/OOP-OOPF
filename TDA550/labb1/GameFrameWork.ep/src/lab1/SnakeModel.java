@@ -3,9 +3,7 @@ package lab1;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.KeyEvent;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 public class SnakeModel extends GameModel {
 
@@ -37,14 +35,14 @@ public class SnakeModel extends GameModel {
     private static final GameTile FOOD_TILE = new RoundTile(Color.BLACK, Color.RED, 2.0, 0.5);
 
     /** Graphical representation of the snake body part*/
-    private static final GameTile SNAKE_HEAD_TILE = new RoundTile(Color.BLACK, Color.LIGHT_GRAY ,2.5, 0.8);
-    private static final GameTile SNAKE_BODY_TILE = new RoundTile(Color.BLACK, Color.DARK_GRAY, 2.5, 0.6);
+    private static final GameTile SNAKE_HEAD_TILE = new RectangularTile(new Color(32, 83, 32));
+    private static final GameTile SNAKE_BODY_TILE = new RectangularTile(Color.green);
 
     /** Graphical representation of a blank tile. */
     private static final GameTile BLANK_TILE = new GameTile();
 
     /** A list containing the positions of all body parts. */
-    private List<Position> body = new ArrayList<Position>();
+    private Queue<Position> body = new LinkedList<>();
 
     /** The position of the snake. */
     private Position snakePos;
@@ -69,7 +67,7 @@ public class SnakeModel extends GameModel {
         // Insert the Snake in the middle of the gameboard.
         this.snakePos = new Position(size.width / 2, size.height / 2);
         body.add(this.snakePos);
-        setGameboardState(body.get(0), SNAKE_HEAD_TILE);
+        setGameboardState(body.poll(), SNAKE_HEAD_TILE);
 
         //Insert first food.
         addFood();
@@ -127,31 +125,26 @@ public class SnakeModel extends GameModel {
     }
 
     private void moveSnake(){
-        setGameboardState(body.get(body.size() - 1), BLANK_TILE);
-        for (int i = body.size() - 1; 0 < i; i--) {
-            body.set(i, body.get(i - 1));
-            setGameboardState(body.get(i), SNAKE_BODY_TILE);
-        }
+        body.add(this.snakePos);
+        setGameboardState(this.snakePos,SNAKE_BODY_TILE);
         this.snakePos = getNextSnakePos();
-        body.set(0, this.snakePos);
     }
 
         public void gameUpdate(int lastKey) throws GameOverException {
             updateDirection(lastKey);
-            //Position to the last element if eats.
-            Position lastPos = new Position(body.get(body.size() - 1).getX(), body.get(body.size() - 1).getY());
-            // Erase the last position and move positions to snake
             moveSnake();
-            // Checks so game is not over
+//             Checks so game is not over
             if (isOutOfBounds(this.snakePos) || getGameboardState(this.snakePos) == SNAKE_BODY_TILE) {
                 throw new GameOverException(this.score);
             }
             // Snake eats
             if (getGameboardState(this.snakePos) == FOOD_TILE){
-                body.add(lastPos);
-                setGameboardState(lastPos, SNAKE_BODY_TILE);
                 addFood();
                 score++;
+            } else {
+                setGameboardState(body.peek(), BLANK_TILE);
+                body.remove();
+
             }
             if(score == (int)(getGameboardSize().getWidth() * getGameboardSize().getHeight())){
                 System.out.println("You won!");
