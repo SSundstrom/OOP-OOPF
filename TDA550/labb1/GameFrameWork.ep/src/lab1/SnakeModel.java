@@ -34,13 +34,11 @@ public class SnakeModel extends GameModel {
     }
 
     /** Graphical representation of a food. */
-    private static final GameTile FOOD_TILE = new RoundTile(new Color(255, 215,
-            0),
-            new Color(255, 255, 0), 2.0);
+    private static final GameTile FOOD_TILE = new RoundTile(Color.BLACK, Color.RED, 2.0, 0.5);
 
     /** Graphical representation of the snake body part*/
-    private static final GameTile SNAKE_TILE = new RoundTile(Color.BLACK,
-            Color.RED, 2.0);
+    private static final GameTile SNAKE_HEAD_TILE = new RoundTile(Color.BLACK, Color.LIGHT_GRAY ,2.5, 0.8);
+    private static final GameTile SNAKE_BODY_TILE = new RoundTile(Color.BLACK, Color.DARK_GRAY, 2.5, 0.6);
 
     /** Graphical representation of a blank tile. */
     private static final GameTile BLANK_TILE = new GameTile();
@@ -59,7 +57,8 @@ public class SnakeModel extends GameModel {
 
     public SnakeModel(){
         Dimension size = getGameboardSize();
-
+        score = 0;
+        direction = Directions.NORTH;
         //Sets gameboard to empty
         for(int i = 0; i < size.width; i++){
             for (int j = 0; j < size.height; j++) {
@@ -70,7 +69,7 @@ public class SnakeModel extends GameModel {
         // Insert the Snake in the middle of the gameboard.
         this.snakePos = new Position(size.width / 2, size.height / 2);
         body.add(this.snakePos);
-        setGameboardState(body.get(0), SNAKE_TILE);
+        setGameboardState(body.get(0), SNAKE_HEAD_TILE);
 
         //Insert first food.
         addFood();
@@ -127,42 +126,43 @@ public class SnakeModel extends GameModel {
                 this.snakePos.getY() + this.direction.getYDelta());
     }
 
+    private void moveSnake(){
+        setGameboardState(body.get(body.size() - 1), BLANK_TILE);
+        for (int i = body.size() - 1; 0 < i; i--) {
+            body.set(i, body.get(i - 1));
+            setGameboardState(body.get(i), SNAKE_BODY_TILE);
+        }
+        this.snakePos = getNextSnakePos();
+        body.set(0, this.snakePos);
+    }
+
         public void gameUpdate(int lastKey) throws GameOverException {
             updateDirection(lastKey);
-            // Erase the last position.
-
-            setGameboardState(body.get(0), BLANK_TILE);
-            // Change collector position.
-            this.snakePos = getNextSnakePos();
-
-            if (isOutOfBounds(this.snakePos)) {
+            //Position to the last element if eats.
+            Position lastPos = new Position(body.get(body.size() - 1).getX(), body.get(body.size() - 1).getY());
+            // Erase the last position and move positions to snake
+            moveSnake();
+            // Checks so game is not over
+            if (isOutOfBounds(this.snakePos) || getGameboardState(this.snakePos) == SNAKE_BODY_TILE) {
                 throw new GameOverException(this.score);
             }
+            // Snake eats
             if (getGameboardState(this.snakePos) == FOOD_TILE){
-                body.add(this.snakePos);
+                body.add(lastPos);
+                setGameboardState(lastPos, SNAKE_BODY_TILE);
                 addFood();
                 score++;
             }
-            // Draw collector at new position.
-            setGameboardState(this.snakePos, SNAKE_TILE);
-
-
-            // Remove the coin at the new collector position (if any)
-
-
-            // Check if all coins are found
-
-
-            // Remove one of the coins
-
-
-            // Add a new coin (simulating moving one coin)
-
-
+            if(score == (int)(getGameboardSize().getWidth() * getGameboardSize().getHeight())){
+                System.out.println("You won!");
+                throw new GameOverException(this.score);
+            }
+            // Draw snake at new position.
+            setGameboardState(this.snakePos, SNAKE_HEAD_TILE);
         }
 
     private boolean isOutOfBounds(Position pos){
-        Dimension size = getGameboardSize();
-        return size.width < pos.getX() || pos.getX() < 0 || size.width < pos.getY() || pos.getY() < 0;
+        return pos.getX() < 0 || pos.getX() >= getGameboardSize().width
+                || pos.getY() < 0 || pos.getY() >= getGameboardSize().height;
     }
 }
