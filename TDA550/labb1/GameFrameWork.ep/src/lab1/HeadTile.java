@@ -8,6 +8,9 @@ public class HeadTile extends GameTile{
     private Color eyes;
     private Color pupils;
 
+    /**
+     * Initzializing the colors for the head.
+     */
    public HeadTile(){
        this.tounge = Color.RED;
        this.background = new  Color(32,83,32);
@@ -15,6 +18,17 @@ public class HeadTile extends GameTile{
        this.pupils = Color.BLACK;
    }
 
+    /**
+     * Draws a head tile.
+     * @param g
+     *            graphics context to draw on.
+     * @param x
+     *            pixel x coordinate of the tile to be drawn.
+     * @param y
+     *            pixel y coordinate of the tile to be drawn.
+     * @param d
+     *            the dimensions of a tile.
+     */
     @Override
     public void draw(Graphics g, int x, int y, Dimension d) {
         super.draw(g, x, y, d);

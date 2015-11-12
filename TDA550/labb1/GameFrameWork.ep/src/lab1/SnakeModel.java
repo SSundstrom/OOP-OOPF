@@ -55,6 +55,9 @@ public class SnakeModel extends GameModel {
     /** The number of food eaten. */
     private int score;
 
+    /**
+     * Intizialing the gameboard. Puts the player in the middle and add the first food to the board.
+     */
     public SnakeModel(){
         Dimension size = getGameboardSize();
         score = 0;
@@ -76,6 +79,9 @@ public class SnakeModel extends GameModel {
 
     }
 
+    /**
+     * Adds food to a random position on the gameboard, if it is possible.
+     */
     private void addFood(){
         Random r = new Random();
         Position foodPos;
@@ -88,11 +94,21 @@ public class SnakeModel extends GameModel {
 
     }
 
+    /**
+     * Checks if the position is empty.
+     * @param pos to be checked.
+     * @return true if the position is empty.
+     */
     private boolean isPositionEmpty(Position pos){
         return getGameboardState(pos) == BLANK_TILE;
     }
 
+    /**
+     * Sets the direction for the next movement.
+     * @param key ID for a specific direction
+     */
     private void updateDirection(final int key) {
+
         switch (key) {
             case KeyEvent.VK_LEFT:
                 if(this.direction != Directions.EAST) {
@@ -120,12 +136,19 @@ public class SnakeModel extends GameModel {
         }
     }
 
+    /**
+     * Calculates and returns the next position.
+     * @return the next position for the Snake
+     */
     private Position getNextSnakePos() {
         return new Position(
                 this.snakePos.getX() + this.direction.getXDelta(),
                 this.snakePos.getY() + this.direction.getYDelta());
     }
 
+    /**
+     * Updates the snakes body to emulate movement.
+     */
     private void moveSnake(){
         body.add(this.snakePos);
         if(this.direction == Directions.EAST || this.direction == Directions.WEST) {
@@ -136,30 +159,46 @@ public class SnakeModel extends GameModel {
         this.snakePos = getNextSnakePos();
     }
 
+    /**
+     * This method is called repeatedly so that the
+     * game can update its state.
+     *
+     * @param lastKey The most recent keystroke.
+     * @throws GameOverException Will end the game and display the score.
+     */
         public void gameUpdate(int lastKey) throws GameOverException {
             updateDirection(lastKey);
             moveSnake();
+
+            if(this.score == (int)(getGameboardSize().getWidth() * getGameboardSize().getHeight()) - 1){
+                System.out.println("You won!");
+                throw new GameOverException(this.score);
+            }
 //             Checks so game is not over
             if (isOutOfBounds(this.snakePos) || getGameboardState(this.snakePos) == SNAKE_BODY_TILE_X || getGameboardState(this.snakePos) == SNAKE_BODY_TILE_Y) {
                 throw new GameOverException(this.score);
             }
+
             // Snake eats
             if (getGameboardState(this.snakePos) == FOOD_TILE){
-                addFood();
                 score++;
+                if (this.score != (int)(getGameboardSize().getWidth() * getGameboardSize().getHeight()) - 1) {
+                    addFood();
+                }
             } else {
                 setGameboardState(body.peek(), BLANK_TILE);
                 body.remove();
 
             }
-            if(score == (int)(getGameboardSize().getWidth() * getGameboardSize().getHeight())){
-                System.out.println("You won!");
-                throw new GameOverException(this.score);
-            }
             // Draw snake at new position.
             setGameboardState(this.snakePos, SNAKE_HEAD_TILE);
         }
 
+    /**
+     * Checks if the snake is going out of bounds.
+     * @param pos the position the snake is trying to go to.
+     * @return true if the snake is not out of bounds.
+     */
     private boolean isOutOfBounds(Position pos){
         return pos.getX() < 0 || pos.getX() >= getGameboardSize().width
                 || pos.getY() < 0 || pos.getY() >= getGameboardSize().height;

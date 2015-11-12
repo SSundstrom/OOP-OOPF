@@ -1,10 +1,6 @@
 package lab1;
 
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.Image;
+import java.awt.*;
 
 import javax.swing.JComponent;
 
@@ -100,6 +96,7 @@ public class GameView extends JComponent {
 					tile.draw(g, i * this.tileSize.width, j
 							* this.tileSize.height,
 							this.tileSize);
+					Toolkit.getDefaultToolkit().sync();
 				}
 			}
 		} else {
@@ -107,6 +104,7 @@ public class GameView extends JComponent {
 			g.setColor(Color.BLACK);
 			final char[] message = "No model chosen.".toCharArray(); 
 			g.drawChars(message, 0, message.length, 50, 50);
+			Toolkit.getDefaultToolkit().sync();
 		}
 	}
 }
