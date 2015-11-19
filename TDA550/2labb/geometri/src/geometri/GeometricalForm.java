@@ -1,6 +1,6 @@
 package geometri;
-
 import java.awt.*;
+
 public interface GeometricalForm extends Comparable<GeometricalForm> {
     public void fill(Graphics g);
     public Color getColor();
