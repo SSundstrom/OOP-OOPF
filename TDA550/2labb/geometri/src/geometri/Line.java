@@ -36,6 +36,7 @@ public class Line extends AbstractGeometricalForm {
 
     @Override
     public void fill(Graphics g) {
+        g.setColor(getColor());
 
     }
 
@@ -46,13 +47,21 @@ public class Line extends AbstractGeometricalForm {
 
     @Override
     public int getPerimeter() {
-        return this.getWidth();
+        return (int)(Math.sqrt(getWidth()*getWidth()*getHeight()*getHeight()));
     }
     /**
      * {@inheritDoc}
      */
+    @Override
     public int hashCode() {
         return 0;
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public boolean equals(Object o) {
+        return super.equals(o) && ((Line)o).isIncreasing == this.isIncreasing;
+    }
 }

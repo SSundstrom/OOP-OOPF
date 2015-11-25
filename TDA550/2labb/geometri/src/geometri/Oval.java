@@ -43,6 +43,8 @@ public class Oval extends AbstractGeometricalForm{
 
     @Override
     public int getPerimeter() {
-        return Math.PI*(Math.sqrt());
+        int a = getWidth()/2;
+        int b = getHeight()/2;
+        return (int)(Math.PI*(3*(a+b) - Math.sqrt((3*a+b)*(a+3*b))));
     }
 }

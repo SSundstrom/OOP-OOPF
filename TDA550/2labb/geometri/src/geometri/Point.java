@@ -35,7 +35,8 @@ public class Point extends AbstractGeometricalForm {
      */
     @Override
     public void fill(Graphics g) {
-
+        g.setColor(getColor());
+        g.fillRect(getX(), getY(), 1, 1);
     }
 
 
