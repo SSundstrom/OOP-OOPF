@@ -37,6 +37,11 @@ public class Line extends AbstractGeometricalForm {
     @Override
     public void fill(Graphics g) {
         g.setColor(getColor());
+        if (isIncreasing) {
+            g.drawLine(getX(), getY()+getHeight(), getX()+getWidth(), getY());
+        } else {
+            g.drawLine(getX(), getY(), getX()+getWidth(), getY()+getHeight());
+        }
 
     }
 
