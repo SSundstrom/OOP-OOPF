@@ -4,12 +4,7 @@ import java.awt.*;
 /**
  * Represents a drawable Square
  */
-public class Square implements GeometricalForm{
-
-    private int x;
-    private int y;
-    private int side;
-    private Color color;
+public class Square extends Rectangle{
 
     /**
      * Initialize a new square on defined position, size and color.
@@ -20,10 +15,7 @@ public class Square implements GeometricalForm{
      * @throws IllegalPositionException Exception if position is illegal.
      */
     public Square(int x, int y, int side, Color c) throws IllegalPositionException{
-        this.x = x;
-        this.y = y;
-        this.side = side;
-        this.color = c;
+        super(x,y,side,side,c);
     }
 
     /**
@@ -32,116 +24,15 @@ public class Square implements GeometricalForm{
      * @param side Size of side.
      * @param c Color of square.
      */
-    public Square(GeometricalForm f, int side, Color c){
-        this.x = f.getX();
-        this.y = f.getY();
-        this.side = side;
-        this.color = c;
+    public Square(GeometricalForm f, int side, Color c) {
+        super(f, side, side, c);
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public void fill(Graphics g) {
-
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public Color getColor() {
-        return null;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public int getArea() {
-        return 0;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public int getHeight() {
-        return 0;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public int getPerimeter() {
-        return 0;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public int getWidth() {
-        return 0;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public int getX() {
-        return 0;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public int getY() {
-        return 0;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void move(int dx, int dy) throws IllegalPositionException {
-
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void place(int x, int y) throws IllegalPositionException {
-
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public int compareTo(GeometricalForm geometricalForm) {
-        return 0;
-    }
-
-    /**
-     * Compares two objects with each other.
-     * @param o Object to compare with.
-     * @return True if the objects are identical except the position.
-     */
-    @Override
-    public boolean equals(Object o){
-        return false;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public int hashCode(){
-        return 0;
+    public int hashCode() {
+        return super.hashCode()*23;
     }
 }
