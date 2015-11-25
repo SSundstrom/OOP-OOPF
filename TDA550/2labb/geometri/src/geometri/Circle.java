@@ -36,4 +36,9 @@ public class Circle extends Oval {
 //      The height is equal to the diameter of the circle.
         return (int)(getHeight()*Math.PI);
     }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode()*7;
+    }
 }

@@ -47,4 +47,9 @@ public class Oval extends AbstractGeometricalForm{
         int b = getHeight()/2;
         return (int)(Math.PI*(3*(a+b) - Math.sqrt((3*a+b)*(a+3*b))));
     }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode()*13;
+    }
 }

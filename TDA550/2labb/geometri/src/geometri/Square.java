@@ -27,4 +27,9 @@ public class Square extends Rectangle{
     public Square(GeometricalForm f, int side, Color c) {
         super(f, side, side, c);
     }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode()*23;
+    }
 }

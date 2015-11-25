@@ -57,4 +57,9 @@ public class Rectangle extends AbstractGeometricalForm {
     public int getPerimeter() {
         return 2*(getHeight()+getWidth());
     }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode()*19;
+    }
 }

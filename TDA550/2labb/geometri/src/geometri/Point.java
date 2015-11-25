@@ -36,7 +36,7 @@ public class Point extends AbstractGeometricalForm {
     @Override
     public void fill(Graphics g) {
         g.setColor(getColor());
-        g.fillRect(getX(), getY(), 1, 1);
+        g.fillRect(getX(), getY(), 2, 2);
     }
 
 
@@ -53,7 +53,10 @@ public class Point extends AbstractGeometricalForm {
         return 0;
     }
 
-
+    @Override
+    public int hashCode() {
+        return super.hashCode()*17;
+    }
 }
 
 
