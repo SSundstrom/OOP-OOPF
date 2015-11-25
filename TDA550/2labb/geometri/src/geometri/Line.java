@@ -34,6 +34,10 @@ public class Line extends AbstractGeometricalForm {
         this.isIncreasing = (f1.getY() - f2.getY()) * (f1.getX() - f2.getX()) > 0;
     }
 
+    /**
+     * {@inheritDoc}
+     */
+
     @Override
     public void fill(Graphics g) {
         g.setColor(getColor());
