@@ -97,7 +97,8 @@ public abstract class AbstractGeometricalForm implements GeometricalForm {
     /**
      * {@inheritDoc}
      */
-    public int compareTo(GeometricalForm geometricalForm) {
+
+    public int compareTo(GeometricalForm f) {
         return 0;
     }
 

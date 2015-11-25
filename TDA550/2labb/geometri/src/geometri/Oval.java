@@ -32,16 +32,17 @@ public class Oval extends AbstractGeometricalForm{
 
     @Override
     public void fill(Graphics g) {
-
+        g.setColor(getColor());
+        g.fillOval(getX(), getY(), getWidth(), getHeight());
     }
 
     @Override
     public int getArea() {
-        return 0;
+        return (int)(getWidth()*getHeight()/4*Math.PI);
     }
 
     @Override
     public int getPerimeter() {
-        return 0;
+        return Math.PI*(Math.sqrt());
     }
 }

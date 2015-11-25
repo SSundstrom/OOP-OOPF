@@ -31,4 +31,9 @@ public class Circle extends Oval {
         super(f, diameter, diameter, c);
     }
 
+    @Override
+    public int getPerimeter() {
+//      The height is equal to the diameter of the circle.
+        return (int)(getHeight()*Math.PI);
+    }
 }

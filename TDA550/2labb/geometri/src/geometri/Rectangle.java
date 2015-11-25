@@ -37,7 +37,8 @@ public class Rectangle extends AbstractGeometricalForm {
      */
     @Override
     public void fill(Graphics g) {
-
+        g.setColor(getColor());
+        g.fillRect(getX(), getY(), getWidth(), getHeight());
     }
 
     /**
@@ -45,7 +46,7 @@ public class Rectangle extends AbstractGeometricalForm {
      */
     @Override
     public int getArea() {
-        return 0;
+        return getHeight()*getWidth();
     }
 
 
@@ -54,6 +55,6 @@ public class Rectangle extends AbstractGeometricalForm {
      */
     @Override
     public int getPerimeter() {
-        return 0;
+        return 2*(getHeight()+getWidth());
     }
 }
