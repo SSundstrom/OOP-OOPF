@@ -35,25 +35,30 @@ public abstract class AbstractGeometricalForm implements GeometricalForm {
      * {@inheritDoc}
      */
     public int getX() {
-        return x;
+        return this.x;
     }
     /**
      * {@inheritDoc}
      */
     public int getY() {
-        return y;
+        return this.y;
     }
     /**
      * {@inheritDoc}
      */
     public Color getColor() {
-        return color;
+        return new Color(color.getRGB());
     }
 
     /**
      * {@inheritDoc}
      */
     public void move(int dx, int dy) throws IllegalPositionException {
+        if(dx < 0 || dy < 0){
+            throw new IllegalPositionException("No negative values please.");
+        }
+        this.x = this.x + dx;
+        this.y = this.y + dy;
 
     }
 
@@ -61,21 +66,25 @@ public abstract class AbstractGeometricalForm implements GeometricalForm {
      * {@inheritDoc}
      */
     public int getHeight() {
-        return height;
+        return this.height;
     }
 
     /**
      * {@inheritDoc}
      */
     public int getWidth() {
-        return width;
+        return this.width;
     }
 
     /**
      * {@inheritDoc}
      */
     public void place(int x, int y) throws IllegalPositionException {
-
+        if( x < 0 || y < 0){
+            throw new IllegalPositionException("No negative values.");
+        }
+        this.x = x;
+        this.y = y;
     }
 
     /**
@@ -90,14 +99,21 @@ public abstract class AbstractGeometricalForm implements GeometricalForm {
      */
 
     public boolean equals(Object o){
-
-        return false;
+        if(this == o){
+            return true;
+        }
+        if(o.getClass() == null || this.getClass() != o.getClass()){
+            return false;
+        }
+        AbstractGeometricalForm tmp = (AbstractGeometricalForm) o;
+        return (this.color.equals(tmp.getColor()) &&
+                this.width == tmp.getWidth() &&
+                this.height == tmp.getHeight());
     }
 
     /**
      * {@inheritDoc}
      */
-
     public int compareTo(GeometricalForm f) {
         return 0;
     }
