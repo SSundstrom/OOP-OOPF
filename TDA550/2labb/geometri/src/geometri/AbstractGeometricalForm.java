@@ -91,7 +91,7 @@ public abstract class AbstractGeometricalForm implements GeometricalForm {
      * {@inheritDoc}
      */
     public int hashCode() {
-        return 0;
+        return this.width * 2 + this.height * 3 + this.color.hashCode() * 5;
     }
 
     /**
