@@ -27,7 +27,7 @@ public class Point extends AbstractGeometricalForm {
      * @param c The color of the Point.
      */
     public Point(GeometricalForm f, Color c) {
-        super(f.getX(),f.getY(),0,0,c);
+        super( f, 0, 0, c);
     }
 
     /**

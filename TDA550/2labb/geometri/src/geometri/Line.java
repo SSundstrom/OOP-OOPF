@@ -30,7 +30,7 @@ public class Line extends AbstractGeometricalForm {
      * @param c  Color of the Line.
      */
     public Line(GeometricalForm f1, GeometricalForm f2, Color c) {
-        super(f1.getX(), f1.getY(), Math.abs(f1.getX() - f2.getX()), Math.abs(f1.getY() - f2.getY()), c);
+        super( f1, Math.abs(f1.getX() - f2.getX()), Math.abs(f1.getY() - f2.getY()), c);
         this.isIncreasing = (f1.getY() - f2.getY()) * (f1.getX() - f2.getX()) > 0;
     }
 
@@ -48,4 +48,11 @@ public class Line extends AbstractGeometricalForm {
     public int getPerimeter() {
         return this.getWidth();
     }
+    /**
+     * {@inheritDoc}
+     */
+    public int hashCode() {
+        return 0;
+    }
+
 }

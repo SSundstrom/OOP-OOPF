@@ -29,7 +29,7 @@ public class Rectangle extends AbstractGeometricalForm {
      * @param c      The color of the Rectangle.
      */
     public Rectangle(GeometricalForm f, int width, int height, Color c) {
-        super(f.getX(),f.getY(),width,height,c);
+        super(f, width, height, c);
     }
 
     /**

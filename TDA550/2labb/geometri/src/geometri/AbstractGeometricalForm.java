@@ -14,13 +14,21 @@ public abstract class AbstractGeometricalForm implements GeometricalForm {
     private int height;
     private int width;
 
-    public AbstractGeometricalForm( int x, int y, int width, int height, Color color) {
+    public AbstractGeometricalForm( int x, int y, int width, int height, Color c) throws IllegalPositionException {
         this.x = x;
         this.y = y;
         this.width = width;
         this.height = height;
-        this.color = color;
+        this.color = c;
 
+    }
+
+    public AbstractGeometricalForm(GeometricalForm f, int width, int height, Color c) {
+        this.x = f.getX();
+        this.y = f.getY();
+        this.width = width;
+        this.height = height;
+        this.color = c;
     }
 
     /**
@@ -78,23 +86,19 @@ public abstract class AbstractGeometricalForm implements GeometricalForm {
     }
 
     /**
-     * Compares two geometrical forms and determines if they are in order.
-     * @param geometricalForm
-     * @return
-     */
-
-    public int compareTo(GeometricalForm geometricalForm) {
-        return 0;
-    }
-
-    /**
-     * Compares two objects with each other.
-     * @param o Object to compare with.
-     * @return True if the objects are identical except the position.
+     * {@inheritDoc}
      */
 
     public boolean equals(Object o){
+
         return false;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public int compareTo(GeometricalForm geometricalForm) {
+        return 0;
     }
 
 }

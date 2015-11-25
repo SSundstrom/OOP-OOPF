@@ -1,14 +1,11 @@
 package geometri;
 
 import java.awt.*;
-import java.util.Objects;
 
 /**
  * Represents a drawable Circle
  */
-public class Circle extends AbstractGeometricalForm {
-
-    private int diameter;
+public class Circle extends Oval {
 
     /**
      * Initialize a new Circle on defined position, diameter and color.
@@ -21,7 +18,6 @@ public class Circle extends AbstractGeometricalForm {
      */
     public Circle(int x, int y, int diameter, Color c) throws IllegalPositionException {
         super(x, y, diameter, diameter, c);
-        this.diameter = diameter;
     }
 
     /**
@@ -32,22 +28,7 @@ public class Circle extends AbstractGeometricalForm {
      * @param c        The color of the circle.
      */
     public Circle(GeometricalForm f, int diameter, Color c) {
-        super(f.getX(), f.getY(), diameter, diameter, c);
-        this.diameter = diameter;
+        super(f, diameter, diameter, c);
     }
 
-    @Override
-    public void fill(Graphics g) {
-
-    }
-
-    @Override
-    public int getArea() {
-        return 0;
-    }
-
-    @Override
-    public int getPerimeter() {
-        return 0;
-    }
 }
