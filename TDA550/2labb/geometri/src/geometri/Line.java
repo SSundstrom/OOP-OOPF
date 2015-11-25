@@ -45,11 +45,17 @@ public class Line extends AbstractGeometricalForm {
 
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int getArea() {
         return 0;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int getPerimeter() {
         return (int)(Math.sqrt(getWidth()*getWidth()*getHeight()*getHeight()));

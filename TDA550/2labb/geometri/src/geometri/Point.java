@@ -48,11 +48,17 @@ public class Point extends AbstractGeometricalForm {
         return 0;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int getPerimeter() {
         return 0;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int hashCode() {
         return super.hashCode()*17;

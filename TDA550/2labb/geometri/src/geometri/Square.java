@@ -28,6 +28,9 @@ public class Square extends Rectangle{
         super(f, side, side, c);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int hashCode() {
         return super.hashCode()*23;
