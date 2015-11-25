@@ -31,12 +31,18 @@ public class Circle extends Oval {
         super(f, diameter, diameter, c);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int getPerimeter() {
 //      The height is equal to the diameter of the circle.
         return (int)(getHeight()*Math.PI);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int hashCode() {
         return super.hashCode()*7;

@@ -14,6 +14,15 @@ public abstract class AbstractGeometricalForm implements GeometricalForm {
     private int height;
     private int width;
 
+    /**
+     * Initialize a new shape
+     * @param x Coordinate in x
+     * @param y Coordinate in y
+     * @param width width of the shape
+     * @param height height of the shape
+     * @param c color of the shape
+     * @throws IllegalPositionException if out of bounds
+     */
     public AbstractGeometricalForm( int x, int y, int width, int height, Color c) throws IllegalPositionException {
         this.x = x;
         this.y = y;
@@ -23,6 +32,13 @@ public abstract class AbstractGeometricalForm implements GeometricalForm {
 
     }
 
+    /**
+     * Initialize a shape
+     * @param f Geometricalform to use
+     * @param width width of shape
+     * @param height height of shape
+     * @param c color of shape
+     */
     public AbstractGeometricalForm(GeometricalForm f, int width, int height, Color c) {
         this.x = f.getX();
         this.y = f.getY();
