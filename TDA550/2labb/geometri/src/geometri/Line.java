@@ -28,6 +28,7 @@ public class Line extends AbstractGeometricalForm {
      * @param f1 GeometricalForm to get start coordinates.
      * @param f2 GeometricalForm to get end coordinates.
      * @param c  Color of the Line.
+     * @throws RuntimeException if the position is out of bounds.
      */
     public Line(GeometricalForm f1, GeometricalForm f2, Color c) {
         super(f1 , Math.abs(f1.getX() - f2.getX()), Math.abs(f1.getY() - f2.getY()), c);
