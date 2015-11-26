@@ -121,7 +121,7 @@ public abstract class AbstractGeometricalForm implements GeometricalForm {
         if(this == o){
             return true;
         }
-        if(o.getClass() == null || this.getClass() != o.getClass()){
+        if(o == null || this.getClass() != o.getClass()){
             return false;
         }
         AbstractGeometricalForm tmp = (AbstractGeometricalForm) o;
