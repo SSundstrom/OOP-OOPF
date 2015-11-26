@@ -18,7 +18,7 @@ public class Line extends AbstractGeometricalForm {
      * @throws IllegalPositionException Exception if coordinates is invalid.
      */
     public Line(int x1, int y1, int x2, int y2, Color c) throws IllegalPositionException {
-        super(x1, y1, Math.abs(x1 - x2), Math.abs(y1 - y2), c);
+        super(Math.min(x1, x2),Math.min(y1 , y2), Math.abs(x1 - x2), Math.abs(y1 - y2), c);
         this.isIncreasing = (y1 - y2) * (x1 - x2) > 0;
     }
 
@@ -30,8 +30,13 @@ public class Line extends AbstractGeometricalForm {
      * @param c  Color of the Line.
      */
     public Line(GeometricalForm f1, GeometricalForm f2, Color c) {
-        super( f1, Math.abs(f1.getX() - f2.getX()), Math.abs(f1.getY() - f2.getY()), c);
+        super(f1 , Math.abs(f1.getX() - f2.getX()), Math.abs(f1.getY() - f2.getY()), c);
         this.isIncreasing = (f1.getY() - f2.getY()) * (f1.getX() - f2.getX()) > 0;
+        try {
+            this.place(Math.min(f1.getX(), f2.getX()), Math.min(f1.getY(), f2.getY()));
+        } catch (IllegalPositionException e) {
+            throw new RuntimeException("You shall not pass");
+        }
     }
 
     /**
@@ -41,11 +46,15 @@ public class Line extends AbstractGeometricalForm {
     @Override
     public void fill(Graphics g) {
         g.setColor(getColor());
+
+        int y1 = getY();
+        int y2 = getY() + getHeight();
+
         if (isIncreasing) {
-            g.drawLine(getX(), getY()+getHeight(), getX()+getWidth(), getY());
-        } else {
-            g.drawLine(getX(), getY(), getX()+getWidth(), getY()+getHeight());
+            y1 = y1 + getHeight();
+            y2 = getY();
         }
+        g.drawLine(getX(), y1, getX()+getWidth(), y2);
 
     }
 

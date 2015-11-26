@@ -24,6 +24,9 @@ public abstract class AbstractGeometricalForm implements GeometricalForm {
      * @throws IllegalPositionException if out of bounds
      */
     public AbstractGeometricalForm( int x, int y, int width, int height, Color c) throws IllegalPositionException {
+        if (x < 0 || y < 0) {
+            throw new IllegalPositionException("Out of Bounds");
+        }
         this.x = x;
         this.y = y;
         this.width = width;
