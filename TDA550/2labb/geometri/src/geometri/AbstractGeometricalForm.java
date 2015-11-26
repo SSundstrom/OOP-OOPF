@@ -134,24 +134,15 @@ public abstract class AbstractGeometricalForm implements GeometricalForm {
      * {@inheritDoc}
      */
     public int compareTo(GeometricalForm f) {
-//        If the area of one object is larger it is the bigger object.
-        if (this.getArea() != f.getArea()) {
-            if (this.getArea() > f.getArea()) {
-                return 1;
-            } else {
-                return -1;
-            }
+
+        int diff = this.getArea() - f.getArea();
+
+        if (diff != 0) {
+            return diff;
         }
-//        If the areas are the same the perimeter decides which is bigger.
-        if (this.getPerimeter() != f.getPerimeter()) {
-            if (this.getPerimeter() > f.getPerimeter()) {
-                return 1;
-            } else {
-                return -1;
-            }
-        }
-//        If both area and perimeter are identical the objects are the same size.
-        return 0;
+
+        return this.getPerimeter() - f.getPerimeter();
+
     }
 
 }
