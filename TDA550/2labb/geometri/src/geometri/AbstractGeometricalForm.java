@@ -27,6 +27,9 @@ public abstract class AbstractGeometricalForm implements GeometricalForm {
      * @throws IllegalPositionException if out of bounds
      */
     public AbstractGeometricalForm( int x, int y, int width, int height, Color c) throws IllegalPositionException {
+        if (x < 0 || y < 0) {
+            throw new IllegalPositionException("Out of Bounds");
+        }
         this.x = x;
         this.y = y;
         this.width = width;
@@ -121,7 +124,7 @@ public abstract class AbstractGeometricalForm implements GeometricalForm {
         if(this == o){
             return true;
         }
-        if(o.getClass() == null || this.getClass() != o.getClass()){
+        if(o == null || this.getClass() != o.getClass()){
             return false;
         }
         AbstractGeometricalForm tmp = (AbstractGeometricalForm) o;
@@ -134,24 +137,15 @@ public abstract class AbstractGeometricalForm implements GeometricalForm {
      * {@inheritDoc}
      */
     public int compareTo(GeometricalForm f) {
-//        If the area of one object is larger it is the bigger object.
-        if (this.getArea() != f.getArea()) {
-            if (this.getArea() > f.getArea()) {
-                return 1;
-            } else {
-                return -1;
-            }
+
+        int diff = this.getArea() - f.getArea();
+
+        if (diff != 0) {
+            return diff;
         }
-//        If the areas are the same the perimeter decides which is bigger.
-        if (this.getPerimeter() != f.getPerimeter()) {
-            if (this.getPerimeter() > f.getPerimeter()) {
-                return 1;
-            } else {
-                return -1;
-            }
-        }
-//        If both area and perimeter are identical the objects are the same size.
-        return 0;
+
+        return this.getPerimeter() - f.getPerimeter();
+
     }
 
 >>>>>>> origin/master
