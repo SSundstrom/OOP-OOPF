@@ -37,14 +37,6 @@ public class Circle extends Oval {
     @Override
     public int getPerimeter() {
 //      The height is equal to the diameter of the circle.
-        return (int)(getHeight()*Math.PI);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public int hashCode() {
-        return super.hashCode()*7;
+        return (int) (getHeight() * Math.PI);
     }
 }

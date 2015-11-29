@@ -1,8 +1,4 @@
 package geometri;
-
-<<<<<<< HEAD
-public abstract class AbstractGeometricalForm implements GeometricalForm {
-=======
 import java.awt.*;
 
 /**
@@ -19,14 +15,15 @@ public abstract class AbstractGeometricalForm implements GeometricalForm {
 
     /**
      * Initialize a new shape
-     * @param x Coordinate in x
-     * @param y Coordinate in y
-     * @param width width of the shape
+     *
+     * @param x      Coordinate in x
+     * @param y      Coordinate in y
+     * @param width  width of the shape
      * @param height height of the shape
-     * @param c color of the shape
+     * @param c      color of the shape
      * @throws IllegalPositionException if out of bounds
      */
-    public AbstractGeometricalForm( int x, int y, int width, int height, Color c) throws IllegalPositionException {
+    public AbstractGeometricalForm(int x, int y, int width, int height, Color c) throws IllegalPositionException {
         if (x < 0 || y < 0) {
             throw new IllegalPositionException("Out of Bounds");
         }
@@ -40,10 +37,11 @@ public abstract class AbstractGeometricalForm implements GeometricalForm {
 
     /**
      * Initialize a shape
-     * @param f Geometricalform to use
-     * @param width width of shape
+     *
+     * @param f      Geometricalform to use
+     * @param width  width of shape
      * @param height height of shape
-     * @param c color of shape
+     * @param c      color of shape
      */
     public AbstractGeometricalForm(GeometricalForm f, int width, int height, Color c) {
         this.x = f.getX();
@@ -59,12 +57,14 @@ public abstract class AbstractGeometricalForm implements GeometricalForm {
     public int getX() {
         return this.x;
     }
+
     /**
      * {@inheritDoc}
      */
     public int getY() {
         return this.y;
     }
+
     /**
      * {@inheritDoc}
      */
@@ -76,7 +76,7 @@ public abstract class AbstractGeometricalForm implements GeometricalForm {
      * {@inheritDoc}
      */
     public void move(int dx, int dy) throws IllegalPositionException {
-        if(dx < 0 || dy < 0){
+        if (dx < 0 || dy < 0) {
             throw new IllegalPositionException("No negative values please.");
         }
         this.x = this.x + dx;
@@ -102,7 +102,7 @@ public abstract class AbstractGeometricalForm implements GeometricalForm {
      * {@inheritDoc}
      */
     public void place(int x, int y) throws IllegalPositionException {
-        if( x < 0 || y < 0){
+        if (x < 0 || y < 0) {
             throw new IllegalPositionException("No negative values.");
         }
         this.x = x;
@@ -113,18 +113,18 @@ public abstract class AbstractGeometricalForm implements GeometricalForm {
      * {@inheritDoc}
      */
     public int hashCode() {
-        return this.width * 2 + this.height * 3 + this.color.hashCode() * 5;
+        return this.width * 2 + this.height * 3 + this.color.hashCode() * 5 + this.getClass().hashCode() * 7;
     }
 
     /**
      * {@inheritDoc}
      */
 
-    public boolean equals(Object o){
-        if(this == o){
+    public boolean equals(Object o) {
+        if (this == o) {
             return true;
         }
-        if(o == null || this.getClass() != o.getClass()){
+        if (o == null || this.getClass() != o.getClass()) {
             return false;
         }
         AbstractGeometricalForm tmp = (AbstractGeometricalForm) o;
@@ -147,6 +147,4 @@ public abstract class AbstractGeometricalForm implements GeometricalForm {
         return this.getPerimeter() - f.getPerimeter();
 
     }
-
->>>>>>> origin/master
 }

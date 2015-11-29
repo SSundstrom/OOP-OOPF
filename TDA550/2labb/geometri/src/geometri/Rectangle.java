@@ -58,11 +58,4 @@ public class Rectangle extends AbstractGeometricalForm {
         return 2*(getHeight()+getWidth());
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public int hashCode() {
-        return super.hashCode()*19;
-    }
 }

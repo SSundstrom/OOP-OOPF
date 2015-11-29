@@ -83,7 +83,7 @@ public class Line extends AbstractGeometricalForm {
         if(isIncreasing) {
             i = 1;
         }
-        return super.hashCode()*11 + i;
+        return super.hashCode() + i;
     }
 
     /**
