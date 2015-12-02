@@ -30,7 +30,7 @@ public class ReversiFactory implements IGameFactory {
 	@Override
 	public GameModel createGame(final String gameName) {
 			switch (gameName) {
-			case "Gold" : return new GoldModel();
+			case "Gold" : return new ReversiModel();
 			case "Reversi" : return new ReversiModel();
 
 			default : throw new IllegalArgumentException("No such game: " + gameName);
