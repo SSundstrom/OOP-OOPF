@@ -2,6 +2,8 @@ package orig2011.v4;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,11 +19,23 @@ import java.util.List;
  */
 public class GoldModel implements GameModel {
 
+	private final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
+
 	/** A Matrix containing the state of the gameboard. */
 	private final GameTile[][] gameboardState;
 
 	/** The size of the state matrix. */
 	private final Dimension gameboardSize = Constants.getGameSize();
+
+	@Override
+	public void addObserver(PropertyChangeListener observer) {
+		pcs.addPropertyChangeListener(observer);
+	}
+
+	@Override
+	public void removeObserver(PropertyChangeListener observer) {
+		pcs.removePropertyChangeListener(observer);
+	}
 
 	public enum Directions {
 		EAST(1, 0),
@@ -103,13 +117,13 @@ public class GoldModel implements GameModel {
 		// Blank out the whole gameboard
 		for (int i = 0; i < size.width; i++) {
 			for (int j = 0; j < size.height; j++) {
-				GameUtils.setGameboardState(gameboardState, i, j, BLANK_TILE);
+				setGameboardState( i, j, BLANK_TILE);
 			}
 		}
 
 		// Insert the collector in the middle of the gameboard.
-		this.collectorPos = new Position(size.width / 2, size.height / 2);
-		GameUtils.setGameboardState(gameboardState,this.collectorPos, COLLECTOR_TILE);
+		setCollectorPosition(new Position(size.width / 2, size.height / 2));
+		setGameboardState(this.collectorPos, COLLECTOR_TILE);
 
 		// Insert coins into the gameboard.
 		for (int i = 0; i < COIN_START_AMOUNT; i++) {
@@ -130,7 +144,7 @@ public class GoldModel implements GameModel {
 		} while (!isPositionEmpty(newCoinPos));
 
 		// ... add a new coin to the empty tile.
-		GameUtils.setGameboardState(gameboardState,newCoinPos, COIN_TILE);
+		setGameboardState(newCoinPos, COIN_TILE);
 		this.coins.add(newCoinPos);
 	}
 
@@ -150,6 +164,7 @@ public class GoldModel implements GameModel {
 	 * according to the user's keypress.
 	 */
 	private void updateDirection(final int key) {
+		Directions oldDirection = this.direction;
 		switch (key) {
 			case KeyEvent.VK_LEFT:
 				this.direction = Directions.WEST;
@@ -167,6 +182,7 @@ public class GoldModel implements GameModel {
 				// Don't change direction if another key is pressed
 				break;
 		}
+		pcs.firePropertyChange("Direction", oldDirection, this.direction);
 	}
 
 	/**
@@ -214,19 +230,19 @@ public class GoldModel implements GameModel {
 		updateDirection(lastKey);
 
 		// Erase the previous position.
-		GameUtils.setGameboardState(gameboardState,this.collectorPos, BLANK_TILE);
+		setGameboardState(this.collectorPos, BLANK_TILE);
 		// Change collector position.
-		this.collectorPos = getNextCollectorPos();
+		setCollectorPosition(getNextCollectorPos());
 
 		if (isOutOfBounds(this.collectorPos)) {
 			throw new GameOverException(this.score);
 		}
 		// Draw collector at new position.
-		GameUtils.setGameboardState(gameboardState,this.collectorPos, COLLECTOR_TILE);
+		setGameboardState(this.collectorPos, COLLECTOR_TILE);
 
 		// Remove the coin at the new collector position (if any)
 		if (this.coins.remove(this.collectorPos)) {
-			this.score++;
+			setScore();
 		}
 
 		// Check if all coins are found
@@ -237,7 +253,7 @@ public class GoldModel implements GameModel {
 		// Remove one of the coins
 		Position oldCoinPos = this.coins.get(0);
 		this.coins.remove(0);
-		GameUtils.setGameboardState(gameboardState,oldCoinPos, BLANK_TILE);
+		setGameboardState(oldCoinPos, BLANK_TILE);
 
 		// Add a new coin (simulating moving one coin)
 		addCoin();
@@ -252,6 +268,45 @@ public class GoldModel implements GameModel {
 	private boolean isOutOfBounds(Position pos) {
 		return pos.getX() < 0 || pos.getX() >= getGameboardSize().width
 				|| pos.getY() < 0 || pos.getY() >= getGameboardSize().height;
+	}
+
+	/**
+	 * Sets gameboardState
+	 * @param pos Position to use
+	 * @param tile New GameTile
+	 */
+	private void setGameboardState(Position pos, GameTile tile){
+		setGameboardState(pos.getX(), pos.getY(), tile);
+	}
+
+	/**
+	 * Sets gameboardState
+	 * @param x x postion
+	 * @param y y position
+	 * @param tile new GameTile
+	 */
+	private void setGameboardState(int x, int y, GameTile tile){
+		GameUtils.setGameboardState(gameboardState, x, y, tile);
+		pcs.firePropertyChange("gameboardstate", null, gameboardState);
+	}
+
+	/**
+	 * Set score
+	 */
+	private void setScore(){
+		int oldScore = this.score;
+		this.score++;
+		pcs.firePropertyChange("Score",oldScore, this.score);
+	}
+
+	/**
+	 * Sets new cursor position
+	 * @param pos
+	 */
+	private void setCollectorPosition(Position pos) {
+		Position oldPos = this.collectorPos;
+		this.collectorPos = pos;
+		pcs.firePropertyChange("Mouse", oldPos, this.collectorPos);
 	}
 
 }
