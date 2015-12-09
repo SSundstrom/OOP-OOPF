@@ -242,7 +242,7 @@ public class GoldModel implements GameModel {
 
 		// Remove the coin at the new collector position (if any)
 		if (this.coins.remove(this.collectorPos)) {
-			setScore();
+			incScore();
 		}
 
 		// Check if all coins are found
@@ -293,7 +293,7 @@ public class GoldModel implements GameModel {
 	/**
 	 * Set score
 	 */
-	private void setScore(){
+	private void incScore(){
 		int oldScore = this.score;
 		this.score++;
 		pcs.firePropertyChange("Score",oldScore, this.score);

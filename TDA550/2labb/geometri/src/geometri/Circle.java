@@ -32,6 +32,7 @@ public class Circle extends Oval {
     }
 
     /**
+     * The formula for calculating the perimeter of a circle is more precise than the formula for a Oval, hence the override.
      * {@inheritDoc}
      */
     @Override
