@@ -1,8 +1,4 @@
-package orig2011.v2;
-
-import orig2011.v0.GameTile;
-import orig2011.v0.Position;
-
+package orig2011.v6;
 
 public class GameUtils {
 
@@ -30,7 +26,7 @@ public class GameUtils {
      *            The type of tile to paint in specified position
      */
     public static void setGameboardState(final GameTile[][] gameboardState, final int x, final int y,
-                                     final GameTile tile) {
+                                         final GameTile tile) {
        gameboardState[x][y] = tile;
     }
 
